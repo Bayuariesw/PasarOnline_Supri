@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,8 +24,9 @@ import java.util.Map;
 
 public class RegisterUser extends AppCompatActivity {
 
+    TextView login;
     EditText nama, email, password, telp;
-    Button btnRegister,btnLogin,btnReisterKios;
+    Button btnRegister,btnReisterKios;
     boolean valid = true;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
@@ -42,8 +44,8 @@ public class RegisterUser extends AppCompatActivity {
         password = findViewById(R.id.etPassword);
         telp = findViewById(R.id.etTelp);
         btnRegister = findViewById(R.id.btnRegister);
-        btnLogin = findViewById(R.id.btnLogin);
-        btnReisterKios = findViewById(R.id.btnRegisterKios);
+        login = findViewById(R.id.tvLogin);
+        //btnReisterKios = findViewById(R.id.btnRegisterKios);
 
         btnRegister.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -82,7 +84,7 @@ public class RegisterUser extends AppCompatActivity {
             }
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener(){
+        login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Login.class));

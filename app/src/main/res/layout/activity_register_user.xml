@@ -8,77 +8,94 @@
     tools:context=".RegisterUser">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cdView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="8dp">
+        android:layout_marginStart="16dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="20dp"
+        android:elevation="20dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="250dp"
+            android:layout_margin="16dp">
+
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Masukan Nama"
-                android:inputType="textPersonName"
                 android:id="@+id/etNama"
-                android:layout_margin="4dp"
-                android:ems="10" />
-
-            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Masukan Email"
-                android:inputType="textEmailAddress"
+                android:layout_margin="4dp"
+                android:ems="10"
+                android:hint="Masukan Nama"
+                android:inputType="textPersonName" />
+
+            <EditText
                 android:id="@+id/etEmail"
-                android:layout_margin="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/etNama"
-                android:ems="10" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Masukan Password"
-                android:inputType="textPassword"
-                android:id="@+id/etPassword"
                 android:layout_margin="4dp"
-                android:layout_below="@id/etEmail"
-                android:ems="10" />
+                android:ems="10"
+                android:hint="Masukan Email"
+                android:inputType="textEmailAddress" />
 
             <EditText
+                android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Masukan No Telp"
-                android:inputType="textEmailAddress"
+                android:layout_below="@id/etEmail"
+                android:layout_margin="4dp"
+                android:ems="10"
+                android:hint="Masukan Password"
+                android:inputType="textPassword" />
+
+            <EditText
                 android:id="@+id/etTelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/etPassword"
                 android:layout_margin="4dp"
-                android:ems="10" />
+                android:ems="10"
+                android:hint="Masukan No Telp"
+                android:inputType="textEmailAddress" />
 
-            <Button
-                android:id="@+id/btnRegister"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Create Account"
-                android:layout_margin="4dp"
-                android:layout_below="@id/etTelp" />
-
-            <Button
-                android:id="@+id/btnLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Login"
-                android:layout_margin="4dp"
-                android:layout_below="@id/btnRegister" />
-
-            <Button
-                android:id="@+id/btnRegisterKios"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Create Account Kios"
-                android:layout_margin="4dp"
-                android:layout_below="@id/btnLogin" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cdView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/login"
+        android:elevation="15dp"
+        android:text="Daftar"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tvPertanyaan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnRegister"
+        android:text="sudah memilii akun?"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPertanyaan"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="Masuk"
+        android:textColor="#1933F1"
+        android:textSize="14sp"
+        android:textStyle="normal" />
 </RelativeLayout>
