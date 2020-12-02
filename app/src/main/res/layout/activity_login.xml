@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Login">
+
+   <androidx.cardview.widget.CardView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="16dp"
+       app:cardCornerRadius="8dp">
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="Masukan Email"
+               android:inputType="textEmailAddress"
+               android:id="@+id/loginEmail"
+               android:layout_margin="4dp"
+               android:ems="10" />
+
+           <EditText
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="Masukan Password"
+               android:inputType="textPassword"
+               android:id="@+id/loginPassword"
+               android:layout_margin="4dp"
+               android:layout_below="@id/loginEmail"
+               android:ems="10" />
+
+           <Button
+               android:id="@+id/btnLogin1"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Login"
+               android:layout_margin="4dp"
+               android:layout_below="@id/loginPassword" />
+
+           <Button
+               android:id="@+id/btnRegister1"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Create Account"
+               android:layout_margin="4dp"
+               android:layout_below="@id/btnLogin1" />
+
+       </RelativeLayout>
+
+   </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

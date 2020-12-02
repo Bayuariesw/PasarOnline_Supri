@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "865177656024",
+    "firebase_url": "https://pasaronline-349cd.firebaseio.com",
+    "project_id": "pasaronline-349cd",
+    "storage_bucket": "pasaronline-349cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865177656024:android:dc0d1110023912f068d5ad",
+        "android_client_info": {
+          "package_name": "com.example.pasaronline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865177656024-7i4lkh0s41u9lgnp8h5uecuueg2lc97i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pasaronline",
+            "certificate_hash": "06ae04fb3b069f900c5d17ad4f20b0e2806e0890"
+          }
+        },
+        {
+          "client_id": "865177656024-138oubajubs1evcsdp842h5pbtv7iid4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE7-ZX_-v4W5ysqfe3tAL4VsZMYHPWo9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865177656024-138oubajubs1evcsdp842h5pbtv7iid4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
