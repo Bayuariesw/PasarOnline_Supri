@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -21,8 +22,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Login extends AppCompatActivity {
 
+    TextView btnRegister;
     EditText email, password;
-    Button btnLogin, btnRegister;
+    Button btnLogin;
     boolean valid = true;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
@@ -38,7 +40,7 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.loginEmail);
         password = findViewById(R.id.loginPassword);
         btnLogin = findViewById(R.id.btnLogin1);
-        btnRegister = findViewById(R.id.btnRegister1);
+        btnRegister = findViewById(R.id.register);
 
         btnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
