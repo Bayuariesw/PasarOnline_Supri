@@ -62,7 +62,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/login"
         android:elevation="15dp"
-        android:fontFamily="@font/gilroyBold"
+        android:fontFamily="@font/gilroybbold"
         android:text="Masuk"
         android:textColor="#FFFFFF" />
 
@@ -84,7 +84,7 @@
         android:layout_below="@+id/tvPertanyaan"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:fontFamily="@font/gilroyLight"
+        android:fontFamily="@font/gilroyllight"
         android:text="Daftar"
         android:textColor="#1933F1"
         android:textSize="14sp"
