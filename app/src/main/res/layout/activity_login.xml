@@ -31,7 +31,7 @@
                android:layout_marginEnd="4dp"
                android:layout_marginBottom="4dp"
                android:ems="10"
-               android:fontFamily="@font/GilroySemiBold"
+               android:fontFamily="@font/gilroymedium"
                android:hint="Masukan Email"
                android:inputType="textEmailAddress" />
 
@@ -45,7 +45,7 @@
                android:layout_marginEnd="4dp"
                android:layout_marginBottom="4dp"
                android:ems="10"
-               android:fontFamily="@font/GilroySemiBold"
+               android:fontFamily="@font/gilroymedium"
                android:hint="Masukan Password"
                android:inputType="textPassword" />
 
@@ -62,7 +62,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/login"
         android:elevation="15dp"
-        android:fontFamily="@font/gilroyBold"
+        android:fontFamily="@font/gilroybold"
         android:text="Masuk"
         android:textColor="#FFFFFF" />
 
@@ -73,7 +73,7 @@
         android:layout_below="@+id/btnLogin1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/GilroySemiBold"
+        android:fontFamily="@font/gilroymedium"
         android:text="belum memilii akun?"
         android:textStyle="bold" />
 
@@ -84,7 +84,7 @@
         android:layout_below="@+id/tvPertanyaan"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:fontFamily="@font/gilroyLight"
+        android:fontFamily="@font/gilroylight"
         android:text="Daftar"
         android:textColor="#1933F1"
         android:textSize="14sp"
