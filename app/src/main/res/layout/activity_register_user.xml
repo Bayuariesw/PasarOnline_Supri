@@ -7,6 +7,18 @@
     android:orientation="vertical"
     tools:context=".RegisterUser">
 
+    <TextView
+        android:id="@+id/tvKios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/gilroybbold"
+        android:text="Daftar Kios"
+        android:textColor="#1933F1"
+        android:textSize="14sp"
+        android:textStyle="normal" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cdView"
         android:layout_width="match_parent"
@@ -75,7 +87,7 @@
                 android:ems="10"
                 android:fontFamily="@font/gilroymedium"
                 android:hint="Masukan No Telp"
-                android:inputType="textEmailAddress" />
+                android:inputType="number" />
 
 
         </RelativeLayout>
@@ -117,5 +129,5 @@
         android:textColor="#1933F1"
         android:textSize="14sp"
         android:textStyle="normal" />
-    //sdasd
+
 </RelativeLayout>

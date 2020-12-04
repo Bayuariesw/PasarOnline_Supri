@@ -24,9 +24,9 @@ import java.util.Map;
 
 public class RegisterUser extends AppCompatActivity {
 
-    TextView login;
+    TextView login, btnReisterKios;
     EditText nama, email, password, telp;
-    Button btnRegister,btnReisterKios;
+    Button btnRegister;
     boolean valid = true;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
@@ -45,7 +45,7 @@ public class RegisterUser extends AppCompatActivity {
         telp = findViewById(R.id.etTelp);
         btnRegister = findViewById(R.id.btnRegister);
         login = findViewById(R.id.tvLogin);
-        //btnReisterKios = findViewById(R.id.btnRegisterKios);
+        btnReisterKios = findViewById(R.id.tvKios);
 
         btnRegister.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -61,7 +61,7 @@ public class RegisterUser extends AppCompatActivity {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             FirebaseUser user = fAuth.getCurrentUser();
-                            Toast.makeText(RegisterUser.this, "Akun dibuat", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterUser.this, "Akun Berhasil dibuat", Toast.LENGTH_SHORT).show();
                             DocumentReference df = fStore.collection("Users").document(user.getUid());
                             Map<String,Object> userInfo = new HashMap<>();
                             userInfo.put("Name", nama.getText().toString());
@@ -88,6 +88,13 @@ public class RegisterUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Login.class));
+            }
+        });
+
+        btnReisterKios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RegisterKios.class));
             }
         });
     }
