@@ -4,22 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".TambahDagang"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvnew1"
+        android:id="@+id/tvPesan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dashboard pengguna"
+        android:text="Tambah Dagang"
         android:gravity="center"
         android:layout_marginTop="100dp"/>
+
     <TextView
         android:id="@+id/tvnew"
+        android:layout_below="@+id/tvPesan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvnew1"
-        android:text="Dashboard"
+        android:text="nama"
         android:gravity="center"
         android:layout_marginTop="10dp"/>
 

@@ -67,8 +67,8 @@ public class RegisterKios extends AppCompatActivity {
                             Toast.makeText(RegisterKios.this, "Akun Kios Berhasil dibuat", Toast.LENGTH_SHORT).show();
                             DocumentReference df = fStore.collection("Kios").document(user.getUid());
                             Map<String, Object> userInfo = new HashMap<>();
-                            userInfo.put("NamaKios", namaKios.getText().toString());
-                            userInfo.put("NamaPemilik", namaPemilik.getText().toString());
+                            userInfo.put("NameKios", namaKios.getText().toString());
+                            userInfo.put("Name", namaPemilik.getText().toString());
                             userInfo.put("Email", email.getText().toString());
                             userInfo.put("Telp", telp.getText().toString());
                             userInfo.put("Alamat", alamat.getText().toString());

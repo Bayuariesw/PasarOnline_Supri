@@ -76,26 +76,39 @@ public class Login extends AppCompatActivity {
 
     private void checkUserAccesLevel(String uid) {
         DocumentReference df = fStore.collection("Users").document(uid);
+        DocumentReference dfKios = fStore.collection("Kios").document(uid);
         //extrak data
-        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Log.d("TAG","onSucces:"+documentSnapshot.getData());
 
-                //identtifikasi user access level
-                if (documentSnapshot.getString("isUser") != null){
-                    //user
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
-                }
+        if (df != null){
+            df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Log.d("TAG","onSucces:"+documentSnapshot.getData());
 
-                if (documentSnapshot.getString("isKios") != null){
-                    //kios
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
+                    //identtifikasi user access level
+                    if (documentSnapshot.getString("isUser") != null){
+                        //user
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
+                    }
                 }
-            }
-        });
+            });
+        }
+        if (dfKios != null){
+            dfKios.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    Log.d("TAG","onSucces:"+documentSnapshot.getData());
+
+                    //identias kios
+                    if (documentSnapshot.getString("isKios") != null){
+                        //user
+                        startActivity(new Intent(getApplicationContext(), TambahDagang.class));
+                        finish();
+                    }
+                }
+            });
+        }
     }
 
     private boolean checkField(EditText textField) {
@@ -113,7 +126,7 @@ public class Login extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(),TambahDagang.class)); ////gantiiiiii
         }
     }
 }
