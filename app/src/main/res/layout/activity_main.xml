@@ -11,23 +11,24 @@
         android:id="@+id/tvnew1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dashboard pengguna"
+        android:layout_marginTop="100dp"
         android:gravity="center"
-        android:layout_marginTop="100dp"/>
+        android:text="Dashboard pengguna" />
+
     <TextView
         android:id="@+id/tvnew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvnew1"
-        android:text="Dashboard"
+        android:layout_marginTop="10dp"
         android:gravity="center"
-        android:layout_marginTop="10dp"/>
+        android:text="Dashboard" />
 
     <Button
         android:id="@+id/btnLogOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvnew"
-        android:text="Log out"/>
+        android:text="Log out" />
 
 </RelativeLayout>

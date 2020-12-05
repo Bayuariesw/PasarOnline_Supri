@@ -8,9 +8,11 @@ public class Dagangan implements Parcelable {
     private String namaDagangan;
     private String jumlah;
     private String deskripsi;
+    private String harga;
     private String idKios;
+    private String mImageUri;
 
-    public Dagangan(){
+    public Dagangan() {
 
     }
 
@@ -57,6 +59,22 @@ public class Dagangan implements Parcelable {
         this.deskripsi = deskripsi;
     }
 
+    public String getHarga() {
+        return harga;
+    }
+
+    public void setHarga(String harga) {
+        this.harga = harga;
+    }
+
+    public String getmImageUri() {
+        return mImageUri;
+    }
+
+    public void setmImageUri(String mImageUri) {
+        this.mImageUri = mImageUri;
+    }
+
     public static final Creator<Dagangan> CREATOR = new Creator<Dagangan>() {
         @Override
         public Dagangan createFromParcel(Parcel source) {
@@ -79,7 +97,10 @@ public class Dagangan implements Parcelable {
         dest.writeString(this.id);
         dest.writeString(this.namaDagangan);
         dest.writeString(this.jumlah);
+        dest.writeString(this.harga);
         dest.writeString(this.deskripsi);
+        dest.writeString(this.idKios);
+        dest.writeString(this.mImageUri);
     }
 
 

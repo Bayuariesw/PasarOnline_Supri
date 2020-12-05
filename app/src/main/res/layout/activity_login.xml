@@ -7,51 +7,51 @@
     android:orientation="vertical"
     tools:context=".Login">
 
-   <androidx.cardview.widget.CardView
-       android:id="@+id/cdView"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_margin="16dp"
-       app:cardCornerRadius="20dp"
-       android:layout_centerHorizontal="true"
-       android:layout_centerVertical="true"
-       android:elevation="30dp">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cdView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="16dp"
+        android:elevation="30dp"
+        app:cardCornerRadius="20dp">
 
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="250dp"
-           android:layout_margin="16dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="16dp">
 
-           <EditText
-               android:id="@+id/loginEmail"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="4dp"
-               android:layout_marginTop="70dp"
-               android:layout_marginEnd="4dp"
-               android:layout_marginBottom="4dp"
-               android:ems="10"
-               android:fontFamily="@font/gilroymedium"
-               android:hint="Masukan Email"
-               android:inputType="textEmailAddress" />
+            <EditText
+                android:id="@+id/loginEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:fontFamily="@font/gilroymedium"
+                android:hint="Masukan Email"
+                android:inputType="textEmailAddress" />
 
-           <EditText
-               android:id="@+id/loginPassword"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_below="@id/loginEmail"
-               android:layout_marginStart="4dp"
-               android:layout_marginTop="4dp"
-               android:layout_marginEnd="4dp"
-               android:layout_marginBottom="4dp"
-               android:ems="10"
-               android:fontFamily="@font/gilroymedium"
-               android:hint="Masukan Password"
-               android:inputType="textPassword" />
+            <EditText
+                android:id="@+id/loginPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/loginEmail"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:ems="10"
+                android:fontFamily="@font/gilroymedium"
+                android:hint="Masukan Password"
+                android:inputType="textPassword" />
 
-       </RelativeLayout>
+        </RelativeLayout>
 
-   </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnLogin1"
