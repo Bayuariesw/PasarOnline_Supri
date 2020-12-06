@@ -1,14 +1,17 @@
-package com.example.pasaronline;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.pasaronline.fragment;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,6 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pasaronline.Login;
+import com.example.pasaronline.R;
 import com.example.pasaronline.model.Dagangan;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,62 +31,65 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class TambahDagang extends AppCompatActivity implements View.OnClickListener {
+
+public class TambahFragment extends Fragment implements View.OnClickListener {
 
     private static final int PICK_IMAGE_REQUEST = 1;
-
     private Button btnChoose;
     private ProgressBar pBar;
     private ImageView imgView;
     private Uri mImageUri;
-
-    TextView tvName;
-    FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
-
-    Button btnAdd;
-    EditText etNama, etJumlah, etDeskripsi, etHarga;
-
+    private TextView tvName; //bisa hapus
+    private Button btnAdd;
+    private EditText etNama, etJumlah, etDeskripsi, etHarga;
     private Dagangan dagangan;
+    private DatabaseReference mDatabase;
 
-    DatabaseReference mDatabase;
+
+    public TambahFragment() {
+        // Required empty public constructor
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tambah_dagang);
 
-        tvName = findViewById(R.id.tvnew);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.fragment_tambah, container, false);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        tvName = view.findViewById(R.id.tvnew);
+        etNama = view.findViewById(R.id.etNama);
+        etJumlah = view.findViewById(R.id.etJumlah);
+        etDeskripsi = view.findViewById(R.id.etDesc);
+        etHarga = view.findViewById(R.id.etHarga);
+        imgView = view.findViewById(R.id.imgView);
+        btnChoose = view.findViewById(R.id.btnChoose);
+        pBar = view.findViewById(R.id.progBar);
 
-        //form
-        etNama = findViewById(R.id.etNama);
-        etJumlah = findViewById(R.id.etJumlah);
-        etDeskripsi = findViewById(R.id.etDesc);
-        etHarga = findViewById(R.id.etHarga);
-        //Tambah
-        btnAdd = findViewById(R.id.btnAdd);
-        //foto
-        imgView = findViewById(R.id.imgView);
-        btnChoose = findViewById(R.id.btnChoose);
-        pBar = findViewById(R.id.progBar);
-
-        //onClick
+        btnAdd = view.findViewById(R.id.btnAdd);
         btnChoose.setOnClickListener(this);
         btnAdd.setOnClickListener(this);
 
         dagangan = new Dagangan();
 
-        Button logout = findViewById(R.id.btnLogOut);
+        //bisa hapus
+        Button logout = view.findViewById(R.id.btnLogOut);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), Login.class));
-                finish();
+                startActivity(new Intent(getActivity().getApplicationContext(), Login.class));
+                getActivity().finish();
             }
+
         });
+        return view;
     }
 
     @Override
@@ -102,11 +110,9 @@ public class TambahDagang extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
-                &&  data != null && data.getData() != null){
+        if (requestCode == PICK_IMAGE_REQUEST && data != null && data.getData() != null){
             mImageUri = data.getData();
 
             imgView.setImageURI(mImageUri);
@@ -114,9 +120,8 @@ public class TambahDagang extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
-
         DocumentReference df = FirebaseFirestore.getInstance().collection("Kios").document(FirebaseAuth.getInstance().getUid());
 
         df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -126,7 +131,7 @@ public class TambahDagang extends AppCompatActivity implements View.OnClickListe
                     String nama = documentSnapshot.getString("Name");
                     tvName.setText(nama);
                 } else {
-                    Toast.makeText(TambahDagang.this, "Data Tidak Ada", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Data Tidak Ada", Toast.LENGTH_SHORT).show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -135,6 +140,7 @@ public class TambahDagang extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+
     }
 
     private void saveDagangan() {
@@ -145,6 +151,7 @@ public class TambahDagang extends AppCompatActivity implements View.OnClickListe
 
         boolean isEmptyFields = false;
 
+        //check isi keculai foto
         if (TextUtils.isEmpty(namaDgng)) {
             isEmptyFields = true;
             etNama.setText("Field tidak boleh kosong");
@@ -160,13 +167,13 @@ public class TambahDagang extends AppCompatActivity implements View.OnClickListe
             etDeskripsi.setText("Field tidak boleh kosong");
         }
 
-        if (TextUtils.isEmpty(deskripsi)) {
+        if (TextUtils.isEmpty(harga)) {
             isEmptyFields = true;
             etHarga.setText("Field tidak boleh kosong");
         }
 
         if (!isEmptyFields) {
-            Toast.makeText(TambahDagang.this, "Data Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Data Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
 
             DatabaseReference dbDagang = mDatabase.child("dagangan");
             String id = dbDagang.push().getKey();
@@ -180,7 +187,13 @@ public class TambahDagang extends AppCompatActivity implements View.OnClickListe
             //insert data
             dbDagang.child(id).setValue(dagangan);
 
-            finish();
+            //sementara
+            etNama.setText("");
+            etJumlah.setText("");
+            etDeskripsi.setText("");
+            etHarga.setText("");
+            imgView.setImageURI(null);
+            //finish();
         }
     }
 }

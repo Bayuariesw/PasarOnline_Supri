@@ -55,14 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-//        Task<DocumentSnapshot> data = df.get();
-//        DocumentSnapshot doc = data.getResult();
-
-//        FirebaseUser user = this.fAuth.getCurrentUser();
-//        String uid = user.getUid();
-//        FirebaseFirestore
-
-//        tv.setText();
         Button logout = findViewById(R.id.btnLogOut);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,10 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-//        if(v.getId() == R.id.btnAdd){
-//            Intent intent = new Intent(MainActivity.this, CreateActivity.class);
-//            startActivity(intent);
-//        }
+
     }
 
 

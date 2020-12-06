@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".fragment.TambahFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp">
+
+                    <EditText
+                        android:id="@+id/etNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:ems="10"
+                        android:hint="Masukan Nama Dagangan"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/etJumlah"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/etNama"
+                        android:layout_margin="4dp"
+                        android:ems="10"
+                        android:hint="Masukan Jumlah"
+                        android:inputType="text" />
+
+                    <EditText
+                        android:id="@+id/etDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/etJumlah"
+                        android:layout_margin="4dp"
+                        android:ems="10"
+                        android:hint="Masukan Deskripsi"
+                        android:inputType="textEmailAddress" />
+
+                    <EditText
+                        android:id="@+id/etHarga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/etDesc"
+                        android:layout_margin="4dp"
+                        android:ems="10"
+                        android:hint="Masukan Harga"
+                        android:inputType="number" />
+
+                    <Button
+                        android:id="@+id/btnChoose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/etHarga"
+                        android:layout_margin="4dp"
+                        android:text="UPLOAD" />
+
+                    <ProgressBar
+                        android:id="@+id/progBar"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/etHarga"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_toEndOf="@+id/btnChoose" />
+
+                    <ImageView
+                        android:id="@+id/imgView"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_below="@id/btnChoose"
+                        android:layout_centerHorizontal="true" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnAdd"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cdView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/login"
+                android:elevation="15dp"
+                android:fontFamily="@font/gilroybbold"
+                android:text="Tambah"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvPesan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnAdd"
+                android:layout_marginTop="150dp"
+                android:gravity="center"
+                android:text="Tambah Dagang" />
+
+            <TextView
+                android:id="@+id/tvnew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvPesan"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="nama" />
+
+            <Button
+                android:id="@+id/btnLogOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvnew"
+                android:text="Log out" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

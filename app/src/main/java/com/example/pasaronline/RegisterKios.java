@@ -76,7 +76,7 @@ public class RegisterKios extends AppCompatActivity {
                             userInfo.put("isKios", "1");
                             df.set(userInfo);
 
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainPedagang.class));
                             finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {

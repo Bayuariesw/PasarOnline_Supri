@@ -103,7 +103,7 @@ public class Login extends AppCompatActivity {
                     //identias kios
                     if (documentSnapshot.getString("isKios") != null){
                         //user
-                        startActivity(new Intent(getApplicationContext(), TambahDagang.class));
+                        startActivity(new Intent(getApplicationContext(), MainPedagang.class));
                         finish();
                     }
                 }
@@ -126,7 +126,7 @@ public class Login extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(),TambahDagang.class)); ////gantiiiiii
+            startActivity(new Intent(getApplicationContext(),MainPedagang.class)); ////gantiiiiii
         }
     }
 }
