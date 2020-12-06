@@ -6,9 +6,15 @@
     tools:context=".fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/rvUtama"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:padding="10dp"/>-->
+
+    <ListView
+        android:id="@+id/lvList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home frag"/>
+        android:layout_height="match_parent" />
 
 </FrameLayout>

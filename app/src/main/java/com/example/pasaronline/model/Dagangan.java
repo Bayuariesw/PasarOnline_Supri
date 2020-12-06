@@ -10,13 +10,20 @@ public class Dagangan implements Parcelable {
     private String deskripsi;
     private String harga;
     private String idKios;
-    private String mImageUri;
+    //private String mImageUri;
 
     public Dagangan() {
 
     }
 
     protected Dagangan(Parcel in) {
+        id = in.readString();
+        namaDagangan = in.readString();
+        jumlah = in.readString();
+        deskripsi = in.readString();
+        harga = in.readString();
+        idKios = in.readString();
+        //mImageUri = in.readString();
     }
 
     public String getId() {
@@ -67,13 +74,13 @@ public class Dagangan implements Parcelable {
         this.harga = harga;
     }
 
-    public String getmImageUri() {
-        return mImageUri;
-    }
-
-    public void setmImageUri(String mImageUri) {
-        this.mImageUri = mImageUri;
-    }
+//    public String getmImageUri() {
+//        return mImageUri;
+//    }
+//
+//    public void setmImageUri(String mImageUri) {
+//        this.mImageUri = mImageUri;
+//    }
 
     public static final Creator<Dagangan> CREATOR = new Creator<Dagangan>() {
         @Override
@@ -100,7 +107,7 @@ public class Dagangan implements Parcelable {
         dest.writeString(this.harga);
         dest.writeString(this.deskripsi);
         dest.writeString(this.idKios);
-        dest.writeString(this.mImageUri);
+        //dest.writeString(this.mImageUri);
     }
 
 
