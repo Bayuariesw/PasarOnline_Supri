@@ -1,5 +1,6 @@
 package com.example.pasaronline.fragment;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,10 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +33,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 
 public class TambahFragment extends Fragment implements View.OnClickListener {
@@ -44,7 +52,9 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
     private EditText etNama, etJumlah, etDeskripsi, etHarga;
     private Dagangan dagangan;
     private DatabaseReference mDatabase;
-//push
+    private StorageReference mstorageRef;
+    private StorageTask mUploadTask;
+
 
     public TambahFragment() {
         // Required empty public constructor
@@ -62,6 +72,7 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_tambah, container, false);
 
+        mstorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mDatabase = FirebaseDatabase.getInstance().getReference();
         tvName = view.findViewById(R.id.tvnew);
         etNama = view.findViewById(R.id.etNama);
@@ -98,7 +109,11 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
             saveDagangan();
         }
         if (v.getId() == R.id.btnChoose){
-            chooseImage();
+            if (mUploadTask != null && mUploadTask.isInProgress()){
+                Toast.makeText(getContext(), "Upload Foto", Toast.LENGTH_SHORT).show();
+            }else {
+                chooseImage();
+            }
         }
     }
 
@@ -143,6 +158,12 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    private String getFileExtension(Uri uri){
+        ContentResolver cr = getActivity().getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(uri));
+    }
+
     private void saveDagangan() {
         String namaDgng = etNama.getText().toString().trim();
         String jumlah = etJumlah.getText().toString().trim();
@@ -173,27 +194,67 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
         }
 
         if (!isEmptyFields) {
-            Toast.makeText(getContext(), "Data Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+            if (mImageUri != null){
+                StorageReference fileRefrences = mstorageRef.child(System.currentTimeMillis()
+                        + "." + getFileExtension(mImageUri));
 
-            DatabaseReference dbDagang = mDatabase.child("dagangan");
-            String id = dbDagang.push().getKey();
-            dagangan.setId(id);
-            dagangan.setNamaDagangan(namaDgng);
-            dagangan.setJumlah(jumlah);
-            dagangan.setDeskripsi(deskripsi);
-            dagangan.setHarga(harga);
-            dagangan.setIdKios(FirebaseAuth.getInstance().getUid());
+                mUploadTask = fileRefrences.putFile(mImageUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        pBar.setProgress(0);
+                                    }
+                                }, 500);
 
-            //insert data
-            dbDagang.child(id).setValue(dagangan);
+                                Toast.makeText(getContext(), "Data Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
 
-            //sementara
-            etNama.setText("");
-            etJumlah.setText("");
-            etDeskripsi.setText("");
-            etHarga.setText("");
-            imgView.setImageURI(null);
-            //finish();
+                                DatabaseReference dbDagang = mDatabase.child("dagangan");
+                                String namaDgng = etNama.getText().toString().trim();
+                                String jumlah = etJumlah.getText().toString().trim();
+                                String deskripsi = etDeskripsi.getText().toString().trim();
+                                String harga = etHarga.getText().toString().trim();
+                                String id = dbDagang.push().getKey();
+                                dagangan.setId(id);
+                                dagangan.setNamaDagangan(namaDgng);
+                                dagangan.setJumlah(jumlah);
+                                dagangan.setDeskripsi(deskripsi);
+                                dagangan.setHarga(harga);
+                                dagangan.setIdKios(FirebaseAuth.getInstance().getUid());
+                                dagangan.setmImageUri(taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+
+                                //insert data
+                                dbDagang.child(id).setValue(dagangan);
+
+                                //sementara
+                                etNama.setText("");
+                                etJumlah.setText("");
+                                etDeskripsi.setText("");
+                                etHarga.setText("");
+                                imgView.setImageURI(null);
+                                //finish();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getContext(), "Gagal mengirim foto", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                                double progres = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
+                                pBar.setProgress((int) progres);
+                            }
+                        });
+            }else {
+                Toast.makeText(getContext(), "Masukan foto", Toast.LENGTH_SHORT).show();
+            }
+
+
         }
     }
 }
