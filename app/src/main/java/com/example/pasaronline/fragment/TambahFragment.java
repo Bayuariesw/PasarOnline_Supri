@@ -44,7 +44,7 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
     private EditText etNama, etJumlah, etDeskripsi, etHarga;
     private Dagangan dagangan;
     private DatabaseReference mDatabase;
-
+//push
 
     public TambahFragment() {
         // Required empty public constructor
