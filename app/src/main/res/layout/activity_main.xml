@@ -7,28 +7,41 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <FrameLayout
+        android:id="@+id/containerUser"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btmNavUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        app:menu="@menu/menu_user"/>
+
     <TextView
-        android:id="@+id/tvnew1"
+        android:id="@+id/tvnew2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:gravity="center"
-        android:text="Dashboard pengguna" />
+        android:text="Dashboard pembeli" />
 
     <TextView
-        android:id="@+id/tvnew"
+        android:id="@+id/tvnew3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvnew1"
+        android:layout_below="@+id/tvnew2"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Dashboard" />
 
     <Button
-        android:id="@+id/btnLogOut"
+        android:id="@+id/btnLogOut2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvnew"
+        android:layout_alignParentTop="true"
         android:text="Log out" />
 
 </RelativeLayout>
