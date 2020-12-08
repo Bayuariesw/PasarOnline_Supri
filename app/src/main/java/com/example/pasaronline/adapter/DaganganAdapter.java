@@ -34,15 +34,15 @@ public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.Dagang
     private List<Dagangan> mDagang;
     private OnItemClickListener mListener;
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
 
-    public DaganganAdapter(Context context, List<Dagangan> dagangans){
+    public DaganganAdapter(Context context, List<Dagangan> dagangans) {
         mContext = context;
         mDagang = dagangans;
     }
@@ -58,7 +58,7 @@ public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.Dagang
     public void onBindViewHolder(@NonNull DagangViewHolder holder, int position) {
         Dagangan daganganSekarang = mDagang.get(position);
         holder.tvName.setText(daganganSekarang.getNamaDagangan());
-        holder.tvHarga.setText("Rp."+daganganSekarang.getHarga());
+        holder.tvHarga.setText("Rp." + daganganSekarang.getHarga());
         holder.tvDeskripsi.setText(daganganSekarang.getDeskripsi());
 //        DocumentReference df = FirebaseFirestore.getInstance().collection("Kios").document(daganganSekarang.getIdKios());
 //        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -93,7 +93,7 @@ public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.Dagang
         return mDagang.size();
     }
 
-    public class DagangViewHolder extends RecyclerView.ViewHolder{
+    public class DagangViewHolder extends RecyclerView.ViewHolder {
         public TextView tvName, tvDeskripsi, tvHarga;
         public ImageView imgDagang;
 
@@ -113,9 +113,9 @@ public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.Dagang
 //                    Intent intent = new Intent(v.getContext(), DetailDagangan.class);
 //                    intent.putExtra("item", mDagang.get(getAdapterPosition()));     //send data
 //                    v.getContext().startActivity(intent);   //start activity baru
-                    if (mListener != null){
+                    if (mListener != null) {
                         int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             mListener.onItemClick(position);
                         }
                     }

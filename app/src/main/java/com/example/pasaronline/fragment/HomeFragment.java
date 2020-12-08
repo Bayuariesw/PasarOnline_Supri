@@ -28,12 +28,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClickListener{
+public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClickListener {
 
-    public static final String EXTRA_URL =  "imageUrl";
-    public static final String EXTRA_NAMA_BARANG =  "namaBarang";
-    public static final String EXTRA_HARGA =  "hargaBarang";
-    public static final String EXTRA_DESKRIPSI =  "deskripsiBarang";
+    public static final String EXTRA_URL = "imageUrl";
+    public static final String EXTRA_NAMA_BARANG = "namaBarang";
+    public static final String EXTRA_HARGA = "hargaBarang";
+    public static final String EXTRA_DESKRIPSI = "deskripsiBarang";
 
     private RecyclerView mRecycle;
     private DaganganAdapter mAdapter;
@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         mRecycle = view.findViewById(R.id.recycleView);
         mRecycle.setHasFixedSize(true);
@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot postSnapShot : snapshot.getChildren()){
+                for (DataSnapshot postSnapShot : snapshot.getChildren()) {
                     Dagangan dagang = postSnapShot.getValue(Dagangan.class);
                     mDagang.add(dagang);
                 }
