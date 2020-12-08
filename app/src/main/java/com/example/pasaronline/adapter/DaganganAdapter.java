@@ -101,7 +101,7 @@ public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.Dagang
             super(itemView);
 
             tvName = itemView.findViewById(R.id.tvBarang);
-            tvDeskripsi = itemView.findViewById(R.id.tvDekripsi);
+            tvDeskripsi = itemView.findViewById(R.id.tvDeskripsi);
             tvHarga = itemView.findViewById(R.id.tvHarga);
             imgDagang = itemView.findViewById(R.id.imgNew);
 

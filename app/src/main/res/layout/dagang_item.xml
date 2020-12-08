@@ -30,24 +30,25 @@
             android:layout_marginRight="16dp"/>
 
         <TextView
-            android:id="@+id/tvKios"
-            android:layout_width="match_parent"
+            android:id="@+id/tvHarga"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvBarang"
-            android:text="Nama Kios"
-            android:textSize="14sp"
+            android:text="Harga"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="4dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"/>
 
         <TextView
-            android:id="@+id/tvHarga"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvKios"
-            android:text="Harga"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginTop="25dp"
+            android:id="@+id/tvDeskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/tvHarga"
+            android:text="Nama Kios"
+            android:textSize="14sp"
+            android:layout_marginTop="4"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"/>
 
