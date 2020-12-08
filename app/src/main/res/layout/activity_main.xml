@@ -7,12 +7,11 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
     <FrameLayout
         android:id="@+id/containerUser"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="120dp"
         android:layout_marginBottom="60dp"/>
 
 
@@ -45,7 +44,8 @@
         android:id="@+id/btnLogOut2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
         android:text="Log out" />
 
 </RelativeLayout>
