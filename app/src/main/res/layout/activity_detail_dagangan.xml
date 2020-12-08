@@ -10,11 +10,10 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cdView"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="650dp"
+        android:layout_centerVertical="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         app:cardCornerRadius="20dp">
 
         <RelativeLayout
@@ -25,7 +24,8 @@
                 android:id="@+id/imgDetail"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/ic_keranjang" />
+                android:src="@drawable/ic_keranjang"
+                android:layout_marginTop="40dp"/>
 
             <TextView
                 android:id="@+id/namaTv"
