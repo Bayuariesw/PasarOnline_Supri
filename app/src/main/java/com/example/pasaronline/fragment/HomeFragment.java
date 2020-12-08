@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
                 mAdapter.setOnItemClickListener(HomeFragment.this);
                 mProgress.setVisibility(View.INVISIBLE);
             }
-
+///
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
