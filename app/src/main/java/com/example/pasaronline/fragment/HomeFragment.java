@@ -1,5 +1,6 @@
 package com.example.pasaronline.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.pasaronline.R;
 import com.example.pasaronline.adapter.DaganganAdapter;
+import com.example.pasaronline.dagangan.DetailDagangan;
 import com.example.pasaronline.model.Dagangan;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +28,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClickListener{
+
+    public static final String EXTRA_URL =  "imageUrl";
+    public static final String EXTRA_NAMA_BARANG =  "namaBarang";
+    public static final String EXTRA_HARGA =  "hargaBarang";
+    public static final String EXTRA_DESKRIPSI =  "deskripsiBarang";
 
     private RecyclerView mRecycle;
     private DaganganAdapter mAdapter;
@@ -72,6 +79,7 @@ public class HomeFragment extends Fragment {
 
                 mAdapter = new DaganganAdapter(getContext(), mDagang);
                 mRecycle.setAdapter(mAdapter);
+                mAdapter.setOnItemClickListener(HomeFragment.this);
                 mProgress.setVisibility(View.INVISIBLE);
             }
 
@@ -82,5 +90,19 @@ public class HomeFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        //new inten
+        Intent detailIntent = new Intent(getContext(), DetailDagangan.class);
+        Dagangan clickItem = mDagang.get(position);
+        //get data
+        detailIntent.putExtra(EXTRA_URL, clickItem.getmImageUri());
+        detailIntent.putExtra(EXTRA_NAMA_BARANG, clickItem.getNamaDagangan());
+        detailIntent.putExtra(EXTRA_HARGA, clickItem.getHarga());
+        detailIntent.putExtra(EXTRA_DESKRIPSI, clickItem.getDeskripsi());
+        //start
+        startActivity(detailIntent);
     }
 }
