@@ -9,7 +9,7 @@
     <item
         android:id="@+id/tambah"
         android:title="Tambah"
-        android:icon="@drawable/ic_tambah"/>
+        android:icon="@drawable/ic_plus"/>
 
     <item
         android:id="@+id/profil"
