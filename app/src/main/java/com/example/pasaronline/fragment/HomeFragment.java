@@ -35,6 +35,7 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
     public static final String EXTRA_NAMA_BARANG = "namaBarang";
     public static final String EXTRA_HARGA = "hargaBarang";
     public static final String EXTRA_DESKRIPSI = "deskripsiBarang";
+    public static final String EXTRA_JUMLAH = "jumlahBarang";
 
     private RecyclerView mRecycle;
     private DaganganAdapter mAdapter;
@@ -104,6 +105,7 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
         detailIntent.putExtra(EXTRA_NAMA_BARANG, clickItem.getNamaDagangan());
         detailIntent.putExtra(EXTRA_HARGA, clickItem.getHarga());
         detailIntent.putExtra(EXTRA_DESKRIPSI, clickItem.getDeskripsi());
+        detailIntent.putExtra(EXTRA_JUMLAH, clickItem.getJumlah());
         //start
         startActivity(detailIntent);
     }
