@@ -7,12 +7,14 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
     <FrameLayout
         android:id="@+id/containerUser"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="60dp"/>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/btmNavUser"
