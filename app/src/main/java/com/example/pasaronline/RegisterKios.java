@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterKios extends AppCompatActivity {
-
+    //buat register kios
     TextView login;
     EditText namaKios, email, namaPemilik, password, telp, alamat;
     Button btnRgis;

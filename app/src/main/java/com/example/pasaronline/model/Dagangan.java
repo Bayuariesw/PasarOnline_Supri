@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Dagangan implements Parcelable {
+    //buat model dari dagangan
     private String id;
     private String namaDagangan;
     private String jumlah;

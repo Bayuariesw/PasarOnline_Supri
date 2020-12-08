@@ -29,7 +29,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.DagangViewHolder> {
-
+    //buat untuk adapter
     private Context mContext;
     private List<Dagangan> mDagang;
     private OnItemClickListener mListener;

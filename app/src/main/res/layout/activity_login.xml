@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Login">
-
+    //buat login 22nya
     <androidx.cardview.widget.CardView
         android:id="@+id/cdView"
         android:layout_width="match_parent"

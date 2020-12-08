@@ -30,7 +30,7 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClickListener {
-
+    //buat home 22nya
     public static final String EXTRA_URL = "imageUrl";
     public static final String EXTRA_NAMA_BARANG = "namaBarang";
     public static final String EXTRA_HARGA = "hargaBarang";

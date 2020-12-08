@@ -21,7 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 
 public class MainPedagang extends AppCompatActivity {
-
+    //buat main activity pedagang
     private BottomNavigationView btmNav;
     private FrameLayout fLayout;
 

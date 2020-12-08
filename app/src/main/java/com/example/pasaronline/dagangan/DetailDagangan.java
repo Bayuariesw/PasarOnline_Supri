@@ -21,7 +21,7 @@ import static com.example.pasaronline.fragment.HomeFragment.EXTRA_NAMA_BARANG;
 import static com.example.pasaronline.fragment.HomeFragment.EXTRA_URL;
 
 public class DetailDagangan extends AppCompatActivity implements View.OnClickListener{
-
+    //ini buat 22nya
     private int total = 0;
     private ImageView imgView;
     private TextView nama, harga, deskripsi, jumlah, banyak;

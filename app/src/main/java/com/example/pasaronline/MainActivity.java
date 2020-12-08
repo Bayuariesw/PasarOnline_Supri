@@ -32,7 +32,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
-
+    //buat main activity pengguna
     private BottomNavigationView btmNav2;
     private FrameLayout fLayout2;
     private TextView tv;

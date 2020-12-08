@@ -21,7 +21,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Login extends AppCompatActivity {
-
+    //buat login 22 nya
     TextView btnRegister;
     EditText email, password;
     Button btnLogin;

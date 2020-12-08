@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterUser extends AppCompatActivity {
-
+    //buat register user
     TextView login, btnReisterKios;
     EditText nama, email, password, telp;
     Button btnRegister;

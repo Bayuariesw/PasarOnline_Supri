@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
+    //buat main pengguna
     <androidx.cardview.widget.CardView
         android:id="@+id/cvhome"
         android:layout_width="match_parent"

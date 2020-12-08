@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".fragment.PedagangFragment">
-
+    // ini buat pedagang profil
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/tes"

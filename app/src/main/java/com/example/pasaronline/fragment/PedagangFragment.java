@@ -12,7 +12,7 @@ import com.example.pasaronline.R;
 
 
 public class PedagangFragment extends Fragment {
-
+    //buatbuat profile pedagang
     public PedagangFragment() {
         // Required empty public constructor
     }

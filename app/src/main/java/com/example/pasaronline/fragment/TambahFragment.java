@@ -41,7 +41,7 @@ import com.google.firebase.storage.UploadTask;
 
 
 public class TambahFragment extends Fragment implements View.OnClickListener {
-
+    //buat tambah dagangan
     private static final int PICK_IMAGE_REQUEST = 1;
     private Button btnChoose;
     private ProgressBar pBar;
