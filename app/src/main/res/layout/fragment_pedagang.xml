@@ -8,14 +8,6 @@
     tools:context=".fragment.PedagangFragment">
     // ini buat pedagang profil
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tes"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:text="Home view" />
 
     <TextView
         android:id="@+id/tv_akun"

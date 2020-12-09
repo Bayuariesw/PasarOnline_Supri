@@ -2,17 +2,40 @@ package com.example.pasaronline.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.pasaronline.R;
+import com.example.pasaronline.adapter.KeranjangAdapter;
+import com.example.pasaronline.model.Keranjang;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class KeranjangFragment extends Fragment {
     //buat kerjanjang user
+    private RecyclerView mRecycle;
+    private KeranjangAdapter mAdapter;
+    private ProgressBar mProgres;
+
+    private DatabaseReference mDatabaseReff;
+    private List<Keranjang> mKeranjang;
+
     public KeranjangFragment() {
         // Required empty public constructor
     }
@@ -28,6 +51,40 @@ public class KeranjangFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_keranjang, container, false);
+        View view = inflater.inflate(R.layout.fragment_keranjang, container, false);
+
+        mRecycle = view.findViewById(R.id.keranjangRv);
+        mRecycle.setHasFixedSize(true);
+        mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        mKeranjang = new ArrayList<>();
+
+        mDatabaseReff = FirebaseDatabase.getInstance().getReference("keranjang");
+        mDatabaseReff.orderByChild("idPembeli").equalTo(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot  postSnapShot : snapshot.getChildren()){
+                    Keranjang keranjang = postSnapShot.getValue(Keranjang.class);
+                    mKeranjang.add(keranjang);
+                }
+
+                mAdapter = new KeranjangAdapter(getContext(), mKeranjang);
+                mRecycle.setAdapter(mAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+//        if (mDatabaseReff.orderByChild("idPembeli").equals(FirebaseAuth.getInstance().getUid())){
+//
+//        }else {
+//            Toast.makeText(getContext(), "Tidak ada data barang", Toast.LENGTH_SHORT).show();
+//        }
+
+        return view;
     }
 }

@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     //buat main activity pengguna
     private BottomNavigationView btmNav2;
     private FrameLayout fLayout2;
-    private TextView tv;
     private FirebaseAuth fAuth;
     private FirebaseFirestore fStore;
 
@@ -50,27 +49,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.containerUser, new HomeFragment()).commit();
         fLayout2 = findViewById(R.id.containerUser);
 
-        tv = findViewById(R.id.tvnew3);
+
 //        tv.setText(FirebaseAuth.getInstance().getUid());
-
-        DocumentReference df = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid());
-
-        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    String nama = documentSnapshot.getString("Name");
-                    tv.setText(nama);
-                }else{
-                    Toast.makeText(MainActivity.this, "Data Tidak Ada", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-            }
-        });
 
         Button logout = findViewById(R.id.btnLogOut2);
         logout.setOnClickListener(new View.OnClickListener() {

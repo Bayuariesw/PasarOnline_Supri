@@ -9,13 +9,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pasaronline.R;
+import com.example.pasaronline.model.Keranjang;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import static com.example.pasaronline.fragment.HomeFragment.EXTRA_DESKRIPSI;
 import static com.example.pasaronline.fragment.HomeFragment.EXTRA_HARGA;
+import static com.example.pasaronline.fragment.HomeFragment.EXTRA_ID_BARANG;
 import static com.example.pasaronline.fragment.HomeFragment.EXTRA_JUMLAH;
 import static com.example.pasaronline.fragment.HomeFragment.EXTRA_NAMA_BARANG;
 import static com.example.pasaronline.fragment.HomeFragment.EXTRA_URL;
@@ -29,13 +35,17 @@ public class DetailDagangan extends AppCompatActivity implements View.OnClickLis
     private String descBarang;
     private String hargaBarang;
     private String namaBarang;
-    private String imgUrl;
+    private String imgUrl, idBarang;
     private Button tambahKeranjang;
+    private DatabaseReference mDatabase;
+    private Keranjang keranjang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_dagangan);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         imgView = findViewById(R.id.imgDetail);
         nama = findViewById(R.id.namaTv);
@@ -51,6 +61,7 @@ public class DetailDagangan extends AppCompatActivity implements View.OnClickLis
         hargaBarang = intent.getStringExtra(EXTRA_HARGA);
         descBarang = intent.getStringExtra(EXTRA_DESKRIPSI);
         jmlBarang = intent.getStringExtra(EXTRA_JUMLAH);
+        idBarang = intent.getStringExtra(EXTRA_ID_BARANG);
 
         //imgView.setImageURI(Uri.parse(imgUrl));
 
@@ -63,6 +74,7 @@ public class DetailDagangan extends AppCompatActivity implements View.OnClickLis
 
         tambahKeranjang.setOnClickListener(this);
 
+        keranjang = new Keranjang();
 
     }
 
@@ -96,7 +108,26 @@ public class DetailDagangan extends AppCompatActivity implements View.OnClickLis
     }
 
     private void addBarang() {
-        String banyakBarang = String.valueOf(total);
-//        String idBarang =
+        String banyakBarang = String.valueOf(total).trim();
+        String barangId = idBarang.trim();
+        String harga = hargaBarang.trim();
+        String barangNama = namaBarang.trim();
+
+        if(total != 0){
+            Toast.makeText(this, "Berhasil Menambahkan Barang ke Keranjang", Toast.LENGTH_SHORT).show();
+            DatabaseReference dbChart = mDatabase.child("keranjang");
+            String id = dbChart.push().getKey();
+            keranjang.setId(id);
+            keranjang.setBarangId(barangId);
+            keranjang.setIdPembeli(FirebaseAuth.getInstance().getUid());
+            keranjang.setHargaBarang(harga);
+            keranjang.setNamaBarang(barangNama);
+            keranjang.setJumlahBarang(banyakBarang);
+
+            dbChart.child(id).setValue(keranjang);
+            finish();
+        }else {
+            Toast.makeText(DetailDagangan.this, "Masukan Jumlah Barang", Toast.LENGTH_SHORT).show();
+        }
     }
-}
+}  

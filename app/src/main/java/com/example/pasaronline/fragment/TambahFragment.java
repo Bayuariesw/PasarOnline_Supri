@@ -47,7 +47,6 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
     private ProgressBar pBar;
     private ImageView imgView;
     private Uri mImageUri;
-    private TextView tvName; //bisa hapus
     private Button btnAdd;
     private EditText etNama, etJumlah, etDeskripsi, etHarga;
     private Dagangan dagangan;
@@ -74,7 +73,7 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
 
         mstorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        tvName = view.findViewById(R.id.tvnew);
+
         etNama = view.findViewById(R.id.etNama);
         etJumlah = view.findViewById(R.id.etJumlah);
         etDeskripsi = view.findViewById(R.id.etDesc);
@@ -89,17 +88,6 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
 
         dagangan = new Dagangan();
 
-        //bisa hapus
-        Button logout = view.findViewById(R.id.btnLogOut);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getActivity().getApplicationContext(), Login.class));
-                getActivity().finish();
-            }
-
-        });
         return view;
     }
 
@@ -137,24 +125,25 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onStart() {
         super.onStart();
-        DocumentReference df = FirebaseFirestore.getInstance().collection("Kios").document(FirebaseAuth.getInstance().getUid());
-
-        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) {
-                    String nama = documentSnapshot.getString("Name");
-                    tvName.setText(nama);
-                } else {
-                    Toast.makeText(getContext(), "Data Tidak Ada", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-            }
-        });
+        //get name user
+//        DocumentReference df = FirebaseFirestore.getInstance().collection("Kios").document(FirebaseAuth.getInstance().getUid());
+//
+//        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                if (documentSnapshot.exists()) {
+//                    String nama = documentSnapshot.getString("Name");
+//                    tvName.setText(nama);
+//                } else {
+//                    Toast.makeText(getContext(), "Data Tidak Ada", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//
+//            }
+//        });
 
     }
 

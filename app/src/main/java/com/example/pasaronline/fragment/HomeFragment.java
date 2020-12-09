@@ -13,17 +13,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pasaronline.R;
 import com.example.pasaronline.adapter.DaganganAdapter;
 import com.example.pasaronline.dagangan.DetailDagangan;
 import com.example.pasaronline.model.Dagangan;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +43,12 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
     public static final String EXTRA_HARGA = "hargaBarang";
     public static final String EXTRA_DESKRIPSI = "deskripsiBarang";
     public static final String EXTRA_JUMLAH = "jumlahBarang";
+    public static final String EXTRA_ID_BARANG = "idKios";
 
     private RecyclerView mRecycle;
     private DaganganAdapter mAdapter;
     private ProgressBar mProgress;
+    private TextView namaUser;
 
     private DatabaseReference mDatabaseRef;
     private List<Dagangan> mDagang;
@@ -64,6 +73,25 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
         mRecycle = view.findViewById(R.id.recycleView);
         mRecycle.setHasFixedSize(true);
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
+        namaUser = view.findViewById(R.id.tvUser);
+
+//        DocumentReference df = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid());
+//        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                if (documentSnapshot.exists()) {
+//                    String nama = documentSnapshot.getString("Name");
+//                    namaUser.setText(nama);
+//                } else {
+//                    Toast.makeText(getContext(), "Data Tidak Ada", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//
+//            }
+//        });
 
         mProgress = view.findViewById(R.id.progress_circle);
 
@@ -96,6 +124,51 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+
+        //user nama
+        DocumentReference df = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid());
+        DocumentReference dfKios = FirebaseFirestore.getInstance().collection("Kios").document(FirebaseAuth.getInstance().getUid());
+        if (df != null){
+            df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (documentSnapshot.exists()) {
+                        String nama = documentSnapshot.getString("Name");
+                        namaUser.setText("Hai "+ nama +"\n" + "Belanja apa hari" + " \n" + "ini?");
+                    } else {
+                        Toast.makeText(getContext(), "Data Tidak Ada", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+        }
+        if (dfKios != null){
+            df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (documentSnapshot.exists()) {
+                        String nama = documentSnapshot.getString("Name");
+                        namaUser.setText("Hai "+ nama +"\n" + "Belanja apa hari" + " \n" + "ini?");
+                    } else {
+                        Toast.makeText(getContext(), "Data Tidak Ada", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+        }
+    }
+
+    @Override
     public void onItemClick(int position) {
         //new inten
         Intent detailIntent = new Intent(getContext(), DetailDagangan.class);
@@ -106,6 +179,7 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
         detailIntent.putExtra(EXTRA_HARGA, clickItem.getHarga());
         detailIntent.putExtra(EXTRA_DESKRIPSI, clickItem.getDeskripsi());
         detailIntent.putExtra(EXTRA_JUMLAH, clickItem.getJumlah());
+        detailIntent.putExtra(EXTRA_ID_BARANG, clickItem.getId());
         //start
         startActivity(detailIntent);
     }

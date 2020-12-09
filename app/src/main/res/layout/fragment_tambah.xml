@@ -113,26 +113,6 @@
                 android:text="Tambah"
                 android:textColor="#FFFFFF" />
 
-            <TextView
-                android:id="@+id/tvPesan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btnAdd"
-                android:layout_marginTop="150dp"
-                android:gravity="center"
-                android:text="Tambah Dagang" />
-
-            <TextView
-                android:id="@+id/tvnew"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvPesan"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="nama" />
-
-
-
         </RelativeLayout>
     </ScrollView>
 
