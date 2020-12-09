@@ -20,77 +20,80 @@
         android:textColor="@color/black"
         android:textSize="24sp" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv1"
+    <LinearLayout
+        android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@+id/tv_akun"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        app:cardBackgroundColor="#66FDBC49"
-        app:cardCornerRadius="20dp">
+        android:background="@drawable/profile"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:fontFamily="@font/gilroyllight"
+            android:gravity="center_vertical"
             android:paddingLeft="20dp"
-            android:paddingTop="35dp"
-            android:text="Umum"
+            android:text="Nama :"
             android:textColor="@color/black"
-            android:textSize="23sp" />
-    </androidx.cardview.widget.CardView>
+            android:textSize="20dp" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv2"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout2"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_below="@+id/cv1"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        app:cardBackgroundColor="#66FDBC49"
-        app:cardCornerRadius="20dp">
+        android:layout_below="@+id/layout1"
+        android:background="@drawable/profile"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:fontFamily="@font/gilroyllight"
+            android:gravity="center_vertical"
             android:paddingLeft="20dp"
-            android:paddingTop="35dp"
-            android:text="Umum"
+            android:text="Email :"
             android:textColor="@color/black"
-            android:textSize="23sp" />
-    </androidx.cardview.widget.CardView>
+            android:textSize="20dp" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv3"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout3"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_below="@+id/cv2"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        app:cardBackgroundColor="#66FDBC49"
-        app:cardCornerRadius="20dp">
+        android:layout_below="@+id/layout2"
+        android:background="@drawable/profile"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:fontFamily="@font/gilroyllight"
+            android:gravity="center_vertical"
             android:paddingLeft="20dp"
-            android:paddingTop="35dp"
-            android:text="Umum"
+            android:text="No. Telp :"
             android:textColor="@color/black"
-            android:textSize="23sp" />
-    </androidx.cardview.widget.CardView>
+            android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnLogOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cv3"
+        android:layout_below="@+id/layout3"
         android:layout_margin="10dp"
         android:backgroundTint="#CBF61414"
         android:text="Log out" />
