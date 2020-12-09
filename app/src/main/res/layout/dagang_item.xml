@@ -9,7 +9,8 @@
     <RelativeLayout
         android:layout_width="190dp"
         android:layout_height="250dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:elevation="10dp">
 
         <ImageView
             android:id="@+id/imgNew"
