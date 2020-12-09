@@ -53,15 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
 //        tv.setText(FirebaseAuth.getInstance().getUid());
 
-        Button logout = findViewById(R.id.btnLogOut2);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), Login.class));
-                finish();
-            }
-        });
     }
 
 
