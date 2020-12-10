@@ -29,7 +29,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/gilroyllight"
             android:gravity="center_vertical"
@@ -37,6 +37,10 @@
             android:text="Nama Toko :"
             android:textColor="@color/black"
             android:textSize="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <LinearLayout
