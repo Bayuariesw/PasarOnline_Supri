@@ -34,4 +34,5 @@
             android:text="Mulai"
             android:fontFamily="@font/gilroyssemibold"/>
     </LinearLayout>
+
 </RelativeLayout>
