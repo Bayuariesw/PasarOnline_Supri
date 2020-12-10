@@ -1,5 +1,6 @@
 package com.example.pasaronline.fragment;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -115,7 +116,7 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && data != null && data.getData() != null){
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null){
             mImageUri = data.getData();
 
             imgView.setImageURI(mImageUri);
@@ -184,7 +185,7 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
 
         if (!isEmptyFields) {
             if (mImageUri != null){
-                StorageReference fileRefrences = mstorageRef.child(System.currentTimeMillis()
+                final StorageReference fileRefrences = mstorageRef.child(System.currentTimeMillis()
                         + "." + getFileExtension(mImageUri));
 
                 mUploadTask = fileRefrences.putFile(mImageUri)
@@ -199,32 +200,41 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
                                     }
                                 }, 500);
 
-                                Toast.makeText(getContext(), "Data Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                                fileRefrences.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        Uri downloadUril = uri;
 
-                                DatabaseReference dbDagang = mDatabase.child("dagangan");
-                                String namaDgng = etNama.getText().toString().trim();
-                                String jumlah = etJumlah.getText().toString().trim();
-                                String deskripsi = etDeskripsi.getText().toString().trim();
-                                String harga = etHarga.getText().toString().trim();
-                                String id = dbDagang.push().getKey();
-                                dagangan.setId(id);
-                                dagangan.setNamaDagangan(namaDgng);
-                                dagangan.setJumlah(jumlah);
-                                dagangan.setDeskripsi(deskripsi);
-                                dagangan.setHarga(harga);
-                                dagangan.setIdKios(FirebaseAuth.getInstance().getUid());
-                                dagangan.setmImageUri(taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+                                        DatabaseReference dbDagang = mDatabase.child("dagangan");
+                                        String namaDgng = etNama.getText().toString().trim();
+                                        String jumlah = etJumlah.getText().toString().trim();
+                                        String deskripsi = etDeskripsi.getText().toString().trim();
+                                        String harga = etHarga.getText().toString().trim();
+                                        String id = dbDagang.push().getKey();
+                                        dagangan.setId(id);
+                                        dagangan.setNamaDagangan(namaDgng);
+                                        dagangan.setJumlah(jumlah);
+                                        dagangan.setDeskripsi(deskripsi);
+                                        dagangan.setHarga(harga);
+                                        dagangan.setIdKios(FirebaseAuth.getInstance().getUid());
+                                        dagangan.setmImageUri(downloadUril.toString());
 
-                                //insert data
-                                dbDagang.child(id).setValue(dagangan);
+                                        //insert data
+                                        dbDagang.child(id).setValue(dagangan);
 
-                                //sementara
-                                etNama.setText("");
-                                etJumlah.setText("");
-                                etDeskripsi.setText("");
-                                etHarga.setText("");
-                                imgView.setImageURI(null);
-                                //finish();
+                                        Toast.makeText(getContext(), "Data Berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+                                        //sementara
+                                        etNama.setText("");
+                                        etJumlah.setText("");
+                                        etDeskripsi.setText("");
+                                        etHarga.setText("");
+                                        imgView.setImageURI(null);
+                                        //finish();
+
+                                    }
+
+                                });
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
