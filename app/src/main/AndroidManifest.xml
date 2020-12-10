@@ -12,17 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Payment"></activity>
-        <activity android:name=".Opening" />
-        <activity android:name=".dagangan.DetailDagangan" />
-        <activity android:name=".MainPedagang" />
-        <activity android:name=".RegisterKios" />
-        <activity android:name=".RegisterUser" />
-        <activity android:name=".Login">
+        <activity android:name=".Opening" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".dagangan.DetailDagangan" />
+        <activity android:name=".MainPedagang" />
+        <activity android:name=".RegisterKios" />
+        <activity android:name=".RegisterUser" />
+        <activity android:name=".Login">
+
         </activity>
         <activity android:name=".MainActivity" />
     </application>

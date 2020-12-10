@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pasaronline.MainActivity;
 import com.example.pasaronline.R;
+import com.example.pasaronline.fragment.KeranjangFragment;
 import com.example.pasaronline.model.Keranjang;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -125,6 +127,11 @@ public class DetailDagangan extends AppCompatActivity implements View.OnClickLis
             keranjang.setJumlahBarang(banyakBarang);
 
             dbChart.child(id).setValue(keranjang);
+
+            Intent intent = new Intent(DetailDagangan.this, MainActivity.class);
+            intent.putExtra("keranjang", "keKeranjang");
+            startActivity(intent);
+
             finish();
         }else {
             Toast.makeText(DetailDagangan.this, "Masukan Jumlah Barang", Toast.LENGTH_SHORT).show();
