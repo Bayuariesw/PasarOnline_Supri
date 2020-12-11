@@ -43,7 +43,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
 
         Picasso.with(mContextl)
                 .load(mKeranjangList.get(position).getImageUrl())
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.ic_launcher_background)
                 .fit()
                 .centerCrop()
                 .into(holder.imgKeranjang);

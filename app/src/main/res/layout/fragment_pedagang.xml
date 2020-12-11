@@ -9,6 +9,12 @@
     // ini buat pedagang profil
     <!-- TODO: Update blank fragment layout -->
 
+    <ProgressBar
+        android:id="@+id/progress_circle3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cvhome"
         android:layout_width="match_parent"

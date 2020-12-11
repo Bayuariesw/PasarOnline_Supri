@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".dagangan.DetailDagangan">
-    //buat detail dari halaman home
+    //buat detail dari halaman home\
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cdView"
         android:layout_width="match_parent"
