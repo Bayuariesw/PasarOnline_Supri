@@ -114,6 +114,7 @@ public class DetailDagangan extends AppCompatActivity implements View.OnClickLis
         String barangId = idBarang.trim();
         String harga = hargaBarang.trim();
         String barangNama = namaBarang.trim();
+        String url = imgUrl;
 
         if(total != 0){
             Toast.makeText(this, "Berhasil Menambahkan Barang ke Keranjang", Toast.LENGTH_SHORT).show();
@@ -125,6 +126,7 @@ public class DetailDagangan extends AppCompatActivity implements View.OnClickLis
             keranjang.setHargaBarang(harga);
             keranjang.setNamaBarang(barangNama);
             keranjang.setJumlahBarang(banyakBarang);
+            keranjang.setImageUrl(url);
 
             dbChart.child(id).setValue(keranjang);
 

@@ -60,20 +60,7 @@ public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.Dagang
         holder.tvName.setText(daganganSekarang.getNamaDagangan());
         holder.tvHarga.setText("Rp." + daganganSekarang.getHarga());
         holder.tvDeskripsi.setText(daganganSekarang.getDeskripsi());
-//        DocumentReference df = FirebaseFirestore.getInstance().collection("Kios").document(daganganSekarang.getIdKios());
-//        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                if (documentSnapshot.exists()){
-//                    String nama = documentSnapshot.getString("NameKios");
-//                    DagangViewHolder holder = null;
-//                    holder.tvKios.setText(nama);
-//                }
-//            }
-//        });
 
-//        Uri uri = Uri.parse(daganganSekarang.getmImageUri());
-//        holder.imgDagang.setImageURI(uri);
 
         //set image to img view
         Picasso.with(mContext)

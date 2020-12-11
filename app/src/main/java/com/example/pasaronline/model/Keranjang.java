@@ -10,6 +10,7 @@ public class Keranjang implements Parcelable {
     private String hargaBarang;
     private String namaBarang;
     private String jumlahBarang;
+    private String imageUrl;
 
     public Keranjang(){
 
@@ -22,6 +23,7 @@ public class Keranjang implements Parcelable {
         hargaBarang = in.readString();
         namaBarang = in.readString();
         jumlahBarang = in.readString();
+        imageUrl = in.readString();
     }
 
     public String getId() {
@@ -72,6 +74,14 @@ public class Keranjang implements Parcelable {
         this.jumlahBarang = jumlahBarang;
     }
 
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
     public static final Creator<Keranjang> CREATOR = new Creator<Keranjang>() {
         @Override
         public Keranjang createFromParcel(Parcel in) {
@@ -97,5 +107,6 @@ public class Keranjang implements Parcelable {
         dest.writeString(hargaBarang);
         dest.writeString(namaBarang);
         dest.writeString(jumlahBarang);
+        dest.writeString(imageUrl);
     }
 }

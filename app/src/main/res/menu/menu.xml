@@ -4,16 +4,19 @@
     <item
         android:id="@+id/home"
         android:title="Home"
+        android:fontFamily="@font/gilroymedium"
         android:icon="@drawable/ic_home"/>
 
     <item
         android:id="@+id/tambah"
         android:title="Tambah"
+        android:fontFamily="@font/gilroymedium"
         android:icon="@drawable/ic_plus"/>
 
     <item
         android:id="@+id/profil"
         android:title="Profile"
+        android:fontFamily="@font/gilroymedium"
         android:icon="@drawable/ic_profile"/>
 
 </menu>
