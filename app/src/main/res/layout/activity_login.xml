@@ -12,8 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="16dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:elevation="30dp"
         app:cardCornerRadius="20dp">
 
@@ -84,7 +86,7 @@
         android:layout_below="@+id/tvPertanyaan"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:fontFamily="@font/gilroyllight"
+        android:fontFamily="@font/gilroymedium"
         android:text="Daftar"
         android:textColor="#1933F1"
         android:textSize="14sp"

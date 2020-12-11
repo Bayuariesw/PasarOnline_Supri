@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="85dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         app:cardCornerRadius="8dp">
@@ -29,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
+                android:fontFamily="@font/gilroymedium"
                 android:ems="10"
                 android:hint="Masukan Nama Pemilik"
                 android:inputType="textPersonName" />
@@ -39,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/etNama"
                 android:layout_margin="4dp"
+                android:fontFamily="@font/gilroymedium"
                 android:ems="10"
                 android:hint="Masukan Nama Kios"
                 android:inputType="text" />
@@ -49,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/etKios"
                 android:layout_margin="4dp"
+                android:fontFamily="@font/gilroymedium"
                 android:ems="10"
                 android:hint="Masukan Email"
                 android:inputType="textEmailAddress" />
@@ -59,6 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/etEmail"
                 android:layout_margin="4dp"
+                android:fontFamily="@font/gilroymedium"
                 android:ems="10"
                 android:hint="Masukan Password"
                 android:inputType="textPassword" />
@@ -69,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/etPassword"
                 android:layout_margin="4dp"
+                android:fontFamily="@font/gilroymedium"
                 android:ems="10"
                 android:hint="Masukan No Telp"
                 android:inputType="number" />
@@ -79,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/etTelp"
                 android:layout_margin="4dp"
+                android:fontFamily="@font/gilroymedium"
                 android:ems="10"
                 android:hint="Alamat"
                 android:inputType="text" />
@@ -118,7 +124,7 @@
         android:layout_below="@+id/tvPertanyaan"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:fontFamily="@font/gilroyllight"
+        android:fontFamily="@font/gilroymedium"
         android:text="Masuk"
         android:textColor="#1933F1"
         android:textSize="14sp"

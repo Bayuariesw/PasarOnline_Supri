@@ -108,16 +108,17 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
     @Override
     public void onStart() {
         super.onStart();
+
         //user nama
         DocumentReference df = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid());
 
-        if (df != null){
+        if (df != null) {
             df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if (documentSnapshot.exists()) {
                         String nama = documentSnapshot.getString("Name");
-                        namaUser.setText("Hai "+ nama +"\n" + "Belanja apa hari" + " \n" + "ini?");
+                        namaUser.setText("Hai " + nama + "\n" + "Belanja apa hari" + " \n" + "ini?");
                     }
                 }
             });
@@ -125,13 +126,13 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
 
         DocumentReference dfKios = FirebaseFirestore.getInstance().collection("Kios").document(FirebaseAuth.getInstance().getUid());
 
-        if (dfKios != null){
+        if (dfKios != null) {
             dfKios.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if (documentSnapshot.exists()) {
                         String nama = documentSnapshot.getString("Name");
-                        namaUser.setText("Hai "+ nama +"\n" + "Belanja apa hari" + " \n" + "ini?");
+                        namaUser.setText("Hai " + nama + "\n" + "Selamat Datang" + " \n" + "di Pasar Online");
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -141,8 +142,6 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
                 }
             });
         }
-
-
     }
 
     @Override

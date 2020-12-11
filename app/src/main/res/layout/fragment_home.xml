@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.HomeFragment">
     //buat home buat 22nya
     <!-- TODO: Update blank fragment layout -->
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/rvUtama"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:padding="10dp"/>-->
-
-<!--    <ListView-->
-<!--        android:id="@+id/lvList"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
 
     <ProgressBar
         android:id="@+id/progress_circle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvhome"
@@ -42,18 +32,15 @@
 
             <TextView
                 android:id="@+id/tvUser"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/gilroyssemibold"
+                android:gravity="left"
                 android:padding="10dp"
-                android:text="Hai $user \nBelanja apa hari \nini?"
+                android:text="..."
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
-            <ImageView
-                android:src="@drawable/ic_person"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -62,6 +49,6 @@
         android:id="@+id/recycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="110dp"/>.
+        android:layout_marginTop="110dp" />.
 
 </RelativeLayout>

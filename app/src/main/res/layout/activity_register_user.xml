@@ -12,11 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
         android:fontFamily="@font/gilroybbold"
         android:text="Daftar Kios"
         android:textColor="#1933F1"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:textStyle="normal" />
 
     <androidx.cardview.widget.CardView
@@ -124,7 +124,7 @@
         android:layout_below="@+id/tvPertanyaan"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:fontFamily="@font/gilroyllight"
+        android:fontFamily="@font/gilroymedium"
         android:text="Masuk"
         android:textColor="#1933F1"
         android:textSize="14sp"

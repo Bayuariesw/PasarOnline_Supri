@@ -38,7 +38,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
         Keranjang keranjangNow = mKeranjangList.get(position);
         holder.nama.setText(keranjangNow.getNamaBarang());
         holder.harga.setText("Harga :" + keranjangNow.getHargaBarang());
-        holder.jumlah.setText("Jumlah :" +keranjangNow.getJumlahBarang());
+        holder.jumlah.setText("Jumlah Belanja :" +keranjangNow.getJumlahBarang());
 
 //        Picasso.with(mContextl)
 //                .load(mKeranjangList.get(position).get)
