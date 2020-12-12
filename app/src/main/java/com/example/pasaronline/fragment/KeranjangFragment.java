@@ -1,5 +1,6 @@
 package com.example.pasaronline.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.pasaronline.Payment;
 import com.example.pasaronline.R;
 import com.example.pasaronline.adapter.KeranjangAdapter;
 import com.example.pasaronline.model.Keranjang;
@@ -44,6 +47,7 @@ public class KeranjangFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
     }
 
@@ -89,6 +93,14 @@ public class KeranjangFragment extends Fragment {
 //            Toast.makeText(getContext(), "Tidak ada data barang", Toast.LENGTH_SHORT).show();
 //        }
 
+        Button bayarr = view.findViewById(R.id.btn_bayar);
+        bayarr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), Payment.class));
+            }
+        });
         return view;
+
     }
 }
