@@ -65,7 +65,7 @@ public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.Dagang
         //set image to img view
         Picasso.with(mContext)
                 .load(mDagang.get(position).getmImageUri())
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.ic_launcher_background)
                 .fit()
                 .centerCrop()
                 .into(holder.imgDagang);

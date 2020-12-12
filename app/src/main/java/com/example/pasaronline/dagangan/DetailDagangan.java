@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class DetailDagangan extends AppCompatActivity implements View.OnClickLis
     private DatabaseReference mDatabase;
     private Keranjang keranjang;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +70,7 @@ public class DetailDagangan extends AppCompatActivity implements View.OnClickLis
         //imgView.setImageURI(Uri.parse(imgUrl));
 
         //set data
-        Picasso.with(this).load(imgUrl).placeholder(R.mipmap.ic_launcher).fit().centerCrop().into(imgView);
+        Picasso.with(this).load(imgUrl).placeholder(R.drawable.ic_launcher_background).fit().centerCrop().into(imgView);
         nama.setText(namaBarang);
         harga.setText(hargaBarang);
         deskripsi.setText(descBarang);

@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context=".Login">
     //buat login 22nya
+
+    <ProgressBar
+        android:id="@+id/progress_circle4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cdView"
         android:layout_width="match_parent"

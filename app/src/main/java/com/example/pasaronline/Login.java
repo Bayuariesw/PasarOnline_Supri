@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,12 +23,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class Login extends AppCompatActivity {
     //buat login 22 nya
-    TextView btnRegister;
-    EditText email, password;
-    Button btnLogin;
+    private TextView btnRegister;
+    private EditText email, password;
+    private Button btnLogin;
     boolean valid = true;
-    FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
+    private FirebaseAuth fAuth;
+    private FirebaseFirestore fStore;
+    private ProgressBar mProgres;
 
 
     @Override
@@ -42,6 +44,7 @@ public class Login extends AppCompatActivity {
         password = findViewById(R.id.loginPassword);
         btnLogin = findViewById(R.id.btnLogin1);
         btnRegister = findViewById(R.id.register);
+        mProgres = findViewById(R.id.progress_circle4);
 
         btnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -89,6 +92,7 @@ public class Login extends AppCompatActivity {
                     if (documentSnapshot.getString("isUser") != null){
                         //user
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        mProgres.setVisibility(View.INVISIBLE);
                         finish();
                     }
                 }
@@ -104,6 +108,7 @@ public class Login extends AppCompatActivity {
                     if (documentSnapshot.getString("isKios") != null){
                         //user
                         startActivity(new Intent(getApplicationContext(), MainPedagang.class));
+                        mProgres.setVisibility(View.INVISIBLE);
                         finish();
                     }
                 }
@@ -140,6 +145,7 @@ public class Login extends AppCompatActivity {
                         if (documentSnapshot.getString("isUser") != null){
                             //user
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            mProgres.setVisibility(View.INVISIBLE);
                             finish();
                         }
                     }
@@ -155,12 +161,13 @@ public class Login extends AppCompatActivity {
                         if (documentSnapshot.getString("isKios") != null){
                             //user
                             startActivity(new Intent(getApplicationContext(), MainPedagang.class));
+                            mProgres.setVisibility(View.INVISIBLE);
                             finish();
                         }
                     }
                 });
             }
-            //startActivity(new Intent(getApplicationContext(),MainPedagang.class)); ////gantiiiiii
+
         }
     }
 }

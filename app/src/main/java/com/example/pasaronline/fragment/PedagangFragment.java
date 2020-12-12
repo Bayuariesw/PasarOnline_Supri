@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.pasaronline.Login;
@@ -25,6 +26,7 @@ public class PedagangFragment extends Fragment {
 
     private TextView namaPemilik, namaKios, email, telp;
     private Button logOut;
+    private ProgressBar mProgres;
 
     public PedagangFragment() {
         // Required empty public constructor
@@ -46,6 +48,7 @@ public class PedagangFragment extends Fragment {
         namaKios = view.findViewById(R.id.namaKios);
         email = view.findViewById(R.id.emailProfil1);
         telp = view.findViewById(R.id.telpProfil1);
+        mProgres = view.findViewById(R.id.progress_circle3);
 
         //nama email dan telpon user
         DocumentReference df = FirebaseFirestore.getInstance().collection("Kios").document(FirebaseAuth.getInstance().getUid());
@@ -63,6 +66,7 @@ public class PedagangFragment extends Fragment {
                     email.setText(emailUser);
                     telp.setText(telpUser);
                 }
+                mProgres.setVisibility(View.INVISIBLE);
             }
         });
 

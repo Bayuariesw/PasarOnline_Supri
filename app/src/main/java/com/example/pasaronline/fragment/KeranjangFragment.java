@@ -57,6 +57,8 @@ public class KeranjangFragment extends Fragment {
         mRecycle.setHasFixedSize(true);
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        mProgres = view.findViewById(R.id.progress_circle1);
+
         mKeranjang = new ArrayList<>();
 
         mDatabaseReff = FirebaseDatabase.getInstance().getReference("keranjang");
@@ -66,16 +68,18 @@ public class KeranjangFragment extends Fragment {
                 for (DataSnapshot  postSnapShot : snapshot.getChildren()){
                     Keranjang keranjang = postSnapShot.getValue(Keranjang.class);
                     mKeranjang.add(keranjang);
+
                 }
 
                 mAdapter = new KeranjangAdapter(getContext(), mKeranjang);
                 mRecycle.setAdapter(mAdapter);
-
+                mProgres.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                mProgres.setVisibility(View.INVISIBLE);
             }
         });
 
