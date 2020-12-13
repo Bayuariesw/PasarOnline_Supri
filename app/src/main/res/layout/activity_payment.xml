@@ -6,4 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Payment">
 
+    <Button
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/btn_bayar2"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:background="@drawable/login"
+        android:fontFamily="@font/gilroyssemibold"
+        android:text="Bayar"
+        android:textColor="@color/white" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
