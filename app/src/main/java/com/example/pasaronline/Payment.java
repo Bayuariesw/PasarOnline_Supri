@@ -63,7 +63,7 @@ public class Payment extends AppCompatActivity implements TransactionFinishedCal
 
     public static TransactionRequest transactionRequest(String id, int price, int qty, String name) {
         TransactionRequest request = new TransactionRequest(System.currentTimeMillis() + " ", 2000);
-//        request.setCustomerDetails(customerDetails());
+        request.setCustomerDetails(customerDetails());
         ItemDetails details = new ItemDetails(id, price, qty, name);
 
         ArrayList<ItemDetails> itemDetails = new ArrayList<>();
