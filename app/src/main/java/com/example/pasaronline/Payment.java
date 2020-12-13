@@ -74,6 +74,7 @@ public class Payment extends AppCompatActivity implements TransactionFinishedCal
         CreditCard creditCard = new CreditCard();
         creditCard.setSaveCard(false);
         creditCard.setAuthentication(CreditCard.AUTHENTICATION_TYPE_RBA);
+        creditCard.setBank(BankType.BCA);
 
         request.setCreditCard(creditCard);
         return request;
