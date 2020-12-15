@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.pasaronline.EditUser;
 import com.example.pasaronline.Login;
 import com.example.pasaronline.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,7 +25,7 @@ public class ProfileFragment extends Fragment {
     //buat profile user
     private ProgressBar mProgres;
     private TextView nama, email, telp;
-    private Button logOut;
+    private Button logOut, edit;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -65,6 +66,13 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        edit = view.findViewById(R.id.btn_update);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), EditUser.class));
+            }
+        });
 
         logOut = view.findViewById(R.id.btnLogOut);
         logOut.setOnClickListener(new View.OnClickListener() {

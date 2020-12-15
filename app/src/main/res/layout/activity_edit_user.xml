@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment.ProfileFragment">
+    tools:context=".EditUser">
     // ini buat profile user
     <!-- TODO: Update blank fragment layout -->
 
@@ -38,7 +38,7 @@
                 android:fontFamily="@font/gilroyssemibold"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="Akun"
+                android:text="Edit akun"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
@@ -77,7 +77,7 @@
                     android:id="@+id/namaProfil"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="nama"
+                    android:text="nama baru"
                     android:fontFamily="@font/gilroymedium"
                     android:textSize="20dp"
                     android:gravity="center_vertical"
@@ -106,7 +106,7 @@
                     android:id="@+id/emailProfil"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="nama"
+                    android:text="email baru"
                     android:fontFamily="@font/gilroymedium"
                     android:textSize="20dp"
                     android:gravity="center_vertical"
@@ -135,7 +135,7 @@
                     android:id="@+id/telpProfil"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="nama"
+                    android:text="nomor telefon baru"
                     android:fontFamily="@font/gilroymedium"
                     android:textSize="20dp"
                     android:gravity="center_vertical"
@@ -152,17 +152,9 @@
                 android:layout_marginTop="20dp"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/purple"
-                android:text="Edit Akun" />
+                android:text="Edit" />
 
-            <Button
-                android:id="@+id/btnLogOut"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_update"
-                android:layout_margin="16dp"
-                android:backgroundTint="#CBF61414"
-                android:textColor="@color/white"
-                android:text="Log out" />
+
 
         </RelativeLayout>
     </ScrollView>
