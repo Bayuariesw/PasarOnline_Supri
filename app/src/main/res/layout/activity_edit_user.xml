@@ -73,9 +73,9 @@
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/namaProfil"
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/namabaruU"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="nama baru"
                     android:fontFamily="@font/gilroymedium"
@@ -102,8 +102,8 @@
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/emailProfil"
+                <EditText
+                    android:id="@+id/emailbaruU"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="email baru"
@@ -131,11 +131,11 @@
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/telpProfil"
+                <EditText
+                    android:id="@+id/telpbaruU"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="nomor telefon baru"
+                    android:text="nomor telepon baru"
                     android:fontFamily="@font/gilroymedium"
                     android:textSize="20dp"
                     android:gravity="center_vertical"
