@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".update.EditUser"></activity>
+        <activity android:name=".update.EditPedagang"></activity>
+        <activity android:name=".update.EditUser" />
         <activity android:name=".Payment" />
         <activity android:name=".Opening">
             <intent-filter>
@@ -26,7 +27,7 @@
         <activity android:name=".MainPedagang" />
         <activity android:name=".RegisterKios" />
         <activity android:name=".RegisterUser" />
-        <activity android:name=".Login"></activity>
+        <activity android:name=".Login" />
         <activity android:name=".MainActivity" />
     </application>
 

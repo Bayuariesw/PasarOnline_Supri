@@ -4,62 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".fragment.PedagangFragment">
-    // ini buat pedagang profil
-    <!-- TODO: Update blank fragment layout -->
+    tools:context=".update.EditPedagang">
 
     <ProgressBar
-        android:id="@+id/progress_circle3"
+        android:id="@+id/progress_circles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvhome"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp">
+
+        <LinearLayout
+            android:id="@+id/lini"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvUser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/gilroyssemibold"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Edit akun"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <ScrollView
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/cvhome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp">
-
+        android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvhome"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="10dp">
-
-                <LinearLayout
-                    android:id="@+id/lini"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tvUser"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/gilroyssemibold"
-                        android:gravity="center"
-                        android:padding="10dp"
-                        android:text="Akun"
-                        android:textColor="@color/black"
-                        android:textSize="24sp" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:id="@+id/layout1"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_below="@+id/cvhome"
+                android:layout_below="@+id/tv_akun"
                 android:background="@drawable/profile"
                 android:orientation="horizontal">
 
@@ -73,19 +70,19 @@
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/namaKios"
+                <EditText
+                    android:id="@+id/editKios"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:text="nama baru"
                     android:fontFamily="@font/gilroymedium"
+                    android:textSize="20dp"
                     android:gravity="center_vertical"
-                    android:text="nama"
-                    android:textSize="20dp" />
+                    android:layout_marginLeft="10dp"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout2"
+                android:id="@+id/layout4"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_below="@+id/layout1"
@@ -98,26 +95,26 @@
                     android:fontFamily="@font/gilroyllight"
                     android:gravity="center_vertical"
                     android:paddingLeft="20dp"
-                    android:text="Nama Pemilik : "
+                    android:text="Nama Pemilik:"
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/namaUser1"
+                <EditText
+                    android:id="@+id/editUser"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:text="nama baru"
                     android:fontFamily="@font/gilroymedium"
+                    android:textSize="20dp"
                     android:gravity="center_vertical"
-                    android:text="nama"
-                    android:textSize="20dp" />
+                    android:layout_marginLeft="10dp"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout4"
+                android:id="@+id/layout2"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_below="@+id/layout2"
+                android:layout_below="@+id/layout4"
                 android:background="@drawable/profile"
                 android:orientation="horizontal">
 
@@ -131,22 +128,22 @@
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/emailProfil1"
+                <EditText
+                    android:id="@+id/editEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:text="email baru"
                     android:fontFamily="@font/gilroymedium"
+                    android:textSize="20dp"
                     android:gravity="center_vertical"
-                    android:text="nama"
-                    android:textSize="20dp" />
+                    android:layout_marginLeft="10dp"/>
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/layout3"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_below="@+id/layout4"
+                android:layout_below="@+id/layout2"
                 android:background="@drawable/profile"
                 android:orientation="horizontal">
 
@@ -160,39 +157,31 @@
                     android:textColor="@color/black"
                     android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/telpProfil1"
+                <EditText
+                    android:id="@+id/editTelp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:text="nomor telepon baru"
                     android:fontFamily="@font/gilroymedium"
+                    android:textSize="20dp"
                     android:gravity="center_vertical"
-                    android:text="nama"
-                    android:textSize="20dp" />
+                    android:layout_marginLeft="10dp"/>
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_update1"
+                android:id="@+id/btn_update2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/layout3"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/purple"
-                android:text="Edit Akun" />
+                android:text="Edit" />
 
-            <Button
-                android:id="@+id/btnLogOut"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_update1"
-                android:layout_margin="16dp"
-                android:backgroundTint="#CBF61414"
-                android:text="Log out" />
         </RelativeLayout>
     </ScrollView>
-
 
 </RelativeLayout>

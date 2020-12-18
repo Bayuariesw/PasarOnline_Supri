@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.pasaronline.fragment.HomeFragment;
 import com.example.pasaronline.fragment.PedagangFragment;
+import com.example.pasaronline.fragment.ProfileFragment;
 import com.example.pasaronline.fragment.TambahFragment;
 import com.example.pasaronline.model.Dagangan;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,6 +37,12 @@ public class MainPedagang extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.containerLayout, new HomeFragment()).commit();
         fLayout = findViewById(R.id.containerLayout);
+
+        String extraProfile = getIntent().getStringExtra("profile");
+        if (extraProfile != null && extraProfile.equals("keProfile")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerLayout,new ProfileFragment()).commit();
+            btmNav.setSelectedItemId(R.id.profil);
+        }
     }
 
     @Override

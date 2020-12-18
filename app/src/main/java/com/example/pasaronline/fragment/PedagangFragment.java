@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.pasaronline.Login;
 import com.example.pasaronline.R;
+import com.example.pasaronline.update.EditPedagang;
+import com.example.pasaronline.update.EditUser;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -25,8 +27,13 @@ public class PedagangFragment extends Fragment {
     //buatbuat profile pedagang
 
     private TextView namaPemilik, namaKios, email, telp;
-    private Button logOut;
+    private Button logOut, edit;
     private ProgressBar mProgres;
+
+    public static String EXTRA_NAMA_PEDAGANG = "namaPedagang";
+    public static String EXTRA_NAMA_KIOS = "namaKos";
+    public static String EXTRA_EMAIL_KIOS = "emialKos";
+    public static String EXTRA_TELP_KIOS = "telpKos";
 
     public PedagangFragment() {
         // Required empty public constructor
@@ -67,6 +74,22 @@ public class PedagangFragment extends Fragment {
                     telp.setText(telpUser);
                 }
                 mProgres.setVisibility(View.INVISIBLE);
+            }
+        });
+
+
+        //edit
+        edit = view.findViewById(R.id.btn_update1);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), EditPedagang.class);
+                intent.putExtra(EXTRA_NAMA_PEDAGANG,namaPemilik.getText().toString());
+                intent.putExtra(EXTRA_NAMA_KIOS,namaKios.getText().toString());
+                intent.putExtra(EXTRA_EMAIL_KIOS,email.getText().toString());
+                intent.putExtra(EXTRA_TELP_KIOS,telp.getText().toString());
+
+                startActivity(intent);
             }
         });
 

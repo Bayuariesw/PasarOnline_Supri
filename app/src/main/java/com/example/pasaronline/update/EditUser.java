@@ -117,8 +117,4 @@ public class EditUser extends AppCompatActivity {
         return valid;
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }
