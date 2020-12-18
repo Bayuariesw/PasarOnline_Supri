@@ -37,9 +37,14 @@ public class MainActivity extends AppCompatActivity {
         String extra = getIntent().getStringExtra("keranjang");
         if (extra != null && extra.equals("keKeranjang")){
             getSupportFragmentManager().beginTransaction().replace(R.id.containerUser, new KeranjangFragment()).commit();
+            btmNav2.setSelectedItemId(R.id.keranjang);
         }
 
-//        tv.setText(FirebaseAuth.getInstance().getUid());
+        String extraProfile = getIntent().getStringExtra("profile");
+        if (extraProfile != null && extraProfile.equals("keProfile")){
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerUser,new ProfileFragment()).commit();
+            btmNav2.setSelectedItemId(R.id.profilUser);
+        }
 
     }
 

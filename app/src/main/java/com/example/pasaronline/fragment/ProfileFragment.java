@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.pasaronline.EditUser;
+import com.example.pasaronline.update.EditUser;
 import com.example.pasaronline.Login;
 import com.example.pasaronline.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,6 +26,10 @@ public class ProfileFragment extends Fragment {
     private ProgressBar mProgres;
     private TextView nama, email, telp;
     private Button logOut, edit;
+
+    public static final String EXTRA_NAMA = "namaUser";
+    public static final String EXTRA_EMAIL = "emailUser";
+    public static final String EXTRA_TELP = "tlpUser";
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -70,7 +74,13 @@ public class ProfileFragment extends Fragment {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), EditUser.class));
+//                startActivity(new Intent(getContext(), EditUser.class));
+                Intent intent = new Intent(getContext(), EditUser.class);
+                intent.putExtra(EXTRA_NAMA,nama.getText().toString());
+                intent.putExtra(EXTRA_EMAIL,email.getText().toString());
+                intent.putExtra(EXTRA_TELP,telp.getText().toString());
+
+                startActivity(intent);
             }
         });
 

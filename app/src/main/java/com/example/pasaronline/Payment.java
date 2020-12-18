@@ -52,7 +52,7 @@ public class Payment extends AppCompatActivity implements TransactionFinishedCal
 
     private void clickPay() {
         MidtransSDK.getInstance().setTransactionRequest(transactionRequest("101", 2000, 1, "John"));
-        MidtransSDK.getInstance().startPaymentUiFlow(this, PaymentMethod.GO_PAY );
+        MidtransSDK.getInstance().startPaymentUiFlow(this, PaymentMethod.BANK_TRANSFER_BCA );
     }
 
     public static CustomerDetails customerDetails() {

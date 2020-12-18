@@ -46,6 +46,8 @@ public class Login extends AppCompatActivity {
         btnRegister = findViewById(R.id.register);
         mProgres = findViewById(R.id.progress_circle4);
 
+        mProgres.setVisibility(View.INVISIBLE);
+        
         btnLogin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -92,7 +94,7 @@ public class Login extends AppCompatActivity {
                     if (documentSnapshot.getString("isUser") != null){
                         //user
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        mProgres.setVisibility(View.INVISIBLE);
+                        mProgres.setVisibility(View.VISIBLE);
                         finish();
                     }
                 }
@@ -108,7 +110,7 @@ public class Login extends AppCompatActivity {
                     if (documentSnapshot.getString("isKios") != null){
                         //user
                         startActivity(new Intent(getApplicationContext(), MainPedagang.class));
-                        mProgres.setVisibility(View.INVISIBLE);
+                        mProgres.setVisibility(View.VISIBLE);
                         finish();
                     }
                 }
