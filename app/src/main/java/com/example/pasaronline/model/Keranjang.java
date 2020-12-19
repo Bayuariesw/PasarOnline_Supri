@@ -122,4 +122,8 @@ public class Keranjang implements Parcelable {
         dest.writeString(jumlahBarang);
         dest.writeString(imageUrl);
     }
+
+    public double getTotalPrice(){
+        return 1;
+    }
 }

@@ -22,11 +22,15 @@ import com.example.pasaronline.adapter.KeranjangAdapter;
 import com.example.pasaronline.model.Keranjang;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback;
@@ -50,9 +54,9 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
     private KeranjangAdapter mAdapter;
     private ProgressBar mProgres;
 
-    private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseReff;
     private ValueEventListener mDBListener;
+    private FirebaseUser fUser;
 
     private List<Keranjang> mKeranjang;
 
@@ -79,12 +83,10 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
         mRecycle.setHasFixedSize(true);
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        mStorage = FirebaseStorage.getInstance();
-
         mProgres = view.findViewById(R.id.progress_circle1);
 
         mKeranjang = new ArrayList<>();
-
+        fUser = FirebaseAuth.getInstance().getCurrentUser();
 
         mDatabaseReff = FirebaseDatabase.getInstance().getReference("keranjang");
         mDBListener = mDatabaseReff.orderByChild("idPembeli").equalTo(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
@@ -117,12 +119,6 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
             }
         });
 
-//        if (mDatabaseReff.orderByChild("idPembeli").equals(FirebaseAuth.getInstance().getUid())){
-//
-//        }else {
-//            Toast.makeText(getContext(), "Tidak ada data barang", Toast.LENGTH_SHORT).show();
-//        }
-
         Button bayar = view.findViewById(R.id.btn_bayar);
         bayar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +127,6 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
             }
         });
         return view;
-
 
     }
 
@@ -159,21 +154,51 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
 
 
     private void clickPay() {
-        MidtransSDK.getInstance().setTransactionRequest(transactionRequest("101", 20000, 1, "John"));
+//        mDatabaseReff.orderByChild("idPembeli").equalTo(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                int totalHarga = 0;
+//                int totalBarang = 0;
+//                for (DataSnapshot postSnapShot : snapshot.getChildren()) {
+//                    Keranjang keranjang = postSnapShot.getValue(Keranjang.class);
+//                    totalHarga += Integer.parseInt(keranjang.getHargaBarang());
+//                    totalBarang += Integer.parseInt(keranjang.getJumlahBarang());
+//                }
+//                MidtransSDK.getInstance().setTransactionRequest(transactionRequest("1", totalHarga, totalBarang, "Total"));
+//                MidtransSDK.getInstance().startPaymentUiFlow(getContext());
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//        DocumentReference df = DatabaseReference
+        MidtransSDK.getInstance().setTransactionRequest(transactionRequest("1", 20000, 1, "semangka"));
         MidtransSDK.getInstance().startPaymentUiFlow(getContext());
     }
 
 
     public static CustomerDetails customerDetails() {
-        CustomerDetails cd = new CustomerDetails();
-        cd.setFirstName("SUGENG");
-        cd.setEmail("siswanto@gmail.com");
-        cd.setPhone("0822222");
+        String nama,emial,telp;
+        final CustomerDetails cd = new CustomerDetails();
+        DocumentReference akun = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid());
+        akun.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()){
+                    cd.setFirstName(documentSnapshot.getString("Name"));
+                    cd.setEmail(documentSnapshot.getString("Email"));
+                    cd.setPhone(documentSnapshot.getString("Telp"));
+                }
+            }
+        });
+
         return cd;
     }
 
     public static TransactionRequest transactionRequest(String id, int price, int qty, String name) {
-        TransactionRequest request = new TransactionRequest(System.currentTimeMillis() + " ", 20000);
+        TransactionRequest request = new TransactionRequest(System.currentTimeMillis() + " ", price);
         request.setCustomerDetails(customerDetails());
         ItemDetails details = new ItemDetails(id, price, qty, name);
 
@@ -209,7 +234,7 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
             Toast.makeText(getContext(), "Transaksi dibatalkan", Toast.LENGTH_LONG).show();
         } else {
             if (result.getStatus().equalsIgnoreCase((TransactionResult.STATUS_INVALID))) {
-                Toast.makeText(getContext(), "Transaksi gak valid" + result.getResponse().getTransactionId(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Transaksi tidak valid" + result.getResponse().getTransactionId(), Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(getContext(), "Ada yang salah nih", Toast.LENGTH_LONG).show();
             }
