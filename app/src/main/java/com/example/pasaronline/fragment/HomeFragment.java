@@ -9,9 +9,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,10 +48,13 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
     public static final String EXTRA_JUMLAH = "jumlahBarang";
     public static final String EXTRA_ID_BARANG = "idKios";
 
+
     private RecyclerView mRecycle;
     private DaganganAdapter mAdapter;
     private ProgressBar mProgress;
     private TextView namaUser;
+    private EditText searchView;
+    CharSequence search ="";
 
     private DatabaseReference mDatabaseRef;
     private List<Dagangan> mDagang;
@@ -74,6 +80,7 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
         mRecycle.setHasFixedSize(true);
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
         namaUser = view.findViewById(R.id.tvUser);
+        searchView = view.findViewById(R.id.search_bar);
 
         mProgress = view.findViewById(R.id.progress_circle);
 
@@ -102,8 +109,28 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
                 mProgress.setVisibility(View.INVISIBLE);
             }
         });
+
+
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mAdapter.getFilter().filter(charSequence);
+                search = charSequence;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         return view;
     }
+
 
     @Override
     public void onStart() {
@@ -159,4 +186,5 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
         //start
         startActivity(detailIntent);
     }
+
 }

@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,12 +27,14 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.DagangViewHolder> {
     //buat untuk adapter
     private Context mContext;
     private List<Dagangan> mDagang;
+    List<Dagangan> filteredUserDataList;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
@@ -43,8 +46,9 @@ public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.Dagang
     }
 
     public DaganganAdapter(Context context, List<Dagangan> dagangans) {
-        mContext = context;
-        mDagang = dagangans;
+        this.mContext = context;
+        this.mDagang = dagangans;
+        this.filteredUserDataList = dagangans;
     }
 
     @NonNull
@@ -77,7 +81,7 @@ public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.Dagang
 
     @Override
     public int getItemCount() {
-        return mDagang.size();
+        return filteredUserDataList.size();
     }
 
     public class DagangViewHolder extends RecyclerView.ViewHolder {
@@ -111,5 +115,36 @@ public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.Dagang
             });
 
         }
+    }
+
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String Key = charSequence.toString();
+                if (Key.isEmpty()) {
+                    filteredUserDataList = mDagang;
+                } else {
+                    List<Dagangan> lstFiltered = new ArrayList<>();
+                    for (Dagangan row : mDagang) {
+                        if (row.getNamaDagangan().toLowerCase().contains(Key.toLowerCase())) {
+                            lstFiltered.add(row);
+                        }
+                    }
+                    filteredUserDataList = lstFiltered;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredUserDataList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+                filteredUserDataList = (List<Dagangan>)filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }
