@@ -174,7 +174,7 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
 //            }
 //        });
 //        DocumentReference df = DatabaseReference
-        MidtransSDK.getInstance().setTransactionRequest(transactionRequest("1", 20000, 1, "semangka"));
+        MidtransSDK.getInstance().setTransactionRequest(transactionRequest("1", 40000, 5, "semangka"));
         MidtransSDK.getInstance().startPaymentUiFlow(getContext());
     }
 
@@ -198,7 +198,7 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
     }
 
     public static TransactionRequest transactionRequest(String id, int price, int qty, String name) {
-        TransactionRequest request = new TransactionRequest(System.currentTimeMillis() + " ", price);
+        TransactionRequest request = new TransactionRequest(System.currentTimeMillis() + " ", price*qty);
         request.setCustomerDetails(customerDetails());
         ItemDetails details = new ItemDetails(id, price, qty, name);
 
