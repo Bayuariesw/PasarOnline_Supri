@@ -23,10 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".dagangan.DetailDagangan" />
+        <activity android:name=".create.DetailDagangan" />
         <activity android:name=".MainPedagang" />
-        <activity android:name=".RegisterKios" />
-        <activity android:name=".RegisterUser" />
+        <activity android:name=".create.RegisterKios" />
+        <activity android:name=".create.RegisterUser" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity" />
     </application>

@@ -3,6 +3,8 @@ package com.example.pasaronline.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.database.Exclude;
+
 public class Keranjang implements Parcelable {
     private String id;
     private String idPembeli;
@@ -11,6 +13,7 @@ public class Keranjang implements Parcelable {
     private String namaBarang;
     private String jumlahBarang;
     private String imageUrl;
+    private String mKey;
 
     public Keranjang(){
 
@@ -80,6 +83,16 @@ public class Keranjang implements Parcelable {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    @Exclude
+    public String getKey() {
+        return mKey;
+    }
+
+    @Exclude
+    public void setKey(String mKey) {
+        this.mKey = mKey;
     }
 
     public static final Creator<Keranjang> CREATOR = new Creator<Keranjang>() {

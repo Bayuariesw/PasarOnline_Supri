@@ -8,10 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.pasaronline.MainActivity;
 import com.example.pasaronline.MainPedagang;
 import com.example.pasaronline.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,10 +21,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.pasaronline.fragment.PedagangFragment.EXTRA_EMAIL_KIOS;
-import static com.example.pasaronline.fragment.PedagangFragment.EXTRA_NAMA_KIOS;
-import static com.example.pasaronline.fragment.PedagangFragment.EXTRA_NAMA_PEDAGANG;
-import static com.example.pasaronline.fragment.PedagangFragment.EXTRA_TELP_KIOS;
+import static com.example.pasaronline.read.PedagangFragment.EXTRA_EMAIL_KIOS;
+import static com.example.pasaronline.read.PedagangFragment.EXTRA_NAMA_KIOS;
+import static com.example.pasaronline.read.PedagangFragment.EXTRA_NAMA_PEDAGANG;
+import static com.example.pasaronline.read.PedagangFragment.EXTRA_TELP_KIOS;
 
 public class EditPedagang extends AppCompatActivity {
     //edit profil pedagang

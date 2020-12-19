@@ -1,4 +1,4 @@
-package com.example.pasaronline;
+package com.example.pasaronline.create;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pasaronline.Login;
+import com.example.pasaronline.MainPedagang;
+import com.example.pasaronline.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -24,12 +27,12 @@ import java.util.Map;
 
 public class RegisterKios extends AppCompatActivity {
     //buat register kios
-    TextView login;
-    EditText namaKios, email, namaPemilik, password, telp, alamat;
-    Button btnRgis;
-    boolean valid = true;
-    FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
+    private TextView login;
+    private EditText namaKios, email, namaPemilik, password, telp, alamat;
+    private Button btnRgis;
+    private boolean valid = true;
+    private FirebaseAuth fAuth;
+    private FirebaseFirestore fStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

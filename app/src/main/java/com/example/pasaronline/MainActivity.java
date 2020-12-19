@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import com.example.pasaronline.fragment.HomeFragment;
-import com.example.pasaronline.fragment.KeranjangFragment;
-import com.example.pasaronline.fragment.ProfileFragment;
+import com.example.pasaronline.read.HomeFragment;
+import com.example.pasaronline.read.KeranjangFragment;
+import com.example.pasaronline.read.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;

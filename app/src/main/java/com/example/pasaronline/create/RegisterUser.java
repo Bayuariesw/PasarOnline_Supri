@@ -1,4 +1,4 @@
-package com.example.pasaronline;
+package com.example.pasaronline.create;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.pasaronline.Login;
+import com.example.pasaronline.MainActivity;
+import com.example.pasaronline.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -24,12 +27,12 @@ import java.util.Map;
 
 public class RegisterUser extends AppCompatActivity {
     //buat register user
-    TextView login, btnReisterKios;
-    EditText nama, email, password, telp;
-    Button btnRegister;
-    boolean valid = true;
-    FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
+    private TextView login, btnReisterKios;
+    private EditText nama, email, password, telp;
+    private Button btnRegister;
+    private boolean valid = true;
+    private FirebaseAuth fAuth;
+    private FirebaseFirestore fStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +74,7 @@ public class RegisterUser extends AppCompatActivity {
                             userInfo.put("isUser", "1");
                             df.set(userInfo);
 
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -87,7 +90,7 @@ public class RegisterUser extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Login.class));
+                startActivity(new Intent(getApplicationContext(), Login.class));
             }
         });
 

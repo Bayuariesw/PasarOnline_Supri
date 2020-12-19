@@ -22,9 +22,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.pasaronline.fragment.ProfileFragment.EXTRA_EMAIL;
-import static com.example.pasaronline.fragment.ProfileFragment.EXTRA_NAMA;
-import static com.example.pasaronline.fragment.ProfileFragment.EXTRA_TELP;
+import static com.example.pasaronline.read.ProfileFragment.EXTRA_EMAIL;
+import static com.example.pasaronline.read.ProfileFragment.EXTRA_NAMA;
+import static com.example.pasaronline.read.ProfileFragment.EXTRA_TELP;
 
 public class EditUser extends AppCompatActivity {
 
