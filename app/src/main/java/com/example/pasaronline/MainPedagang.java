@@ -4,22 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.pasaronline.fragment.HomeFragment;
-import com.example.pasaronline.fragment.PedagangFragment;
-import com.example.pasaronline.fragment.ProfileFragment;
-import com.example.pasaronline.fragment.TambahFragment;
-import com.example.pasaronline.model.Dagangan;
+import com.example.pasaronline.read.HomeFragment;
+import com.example.pasaronline.read.PedagangFragment;
+import com.example.pasaronline.read.ProfileFragment;
+import com.example.pasaronline.create.TambahFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DatabaseReference;
 
 public class MainPedagang extends AppCompatActivity {
     //buat main activity pedagang

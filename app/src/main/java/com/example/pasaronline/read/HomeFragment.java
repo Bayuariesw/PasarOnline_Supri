@@ -1,4 +1,4 @@
-package com.example.pasaronline.fragment;
+package com.example.pasaronline.read;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.example.pasaronline.R;
 import com.example.pasaronline.adapter.DaganganAdapter;
-import com.example.pasaronline.dagangan.DetailDagangan;
+import com.example.pasaronline.create.DetailDagangan;
 import com.example.pasaronline.model.Dagangan;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

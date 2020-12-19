@@ -1,4 +1,4 @@
-package com.example.pasaronline.fragment;
+package com.example.pasaronline.read;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,12 +20,15 @@ import com.example.pasaronline.Payment;
 import com.example.pasaronline.R;
 import com.example.pasaronline.adapter.KeranjangAdapter;
 import com.example.pasaronline.model.Keranjang;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback;
 import com.midtrans.sdk.corekit.core.MidtransSDK;
 import com.midtrans.sdk.corekit.core.TransactionRequest;
@@ -47,7 +50,10 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
     private KeranjangAdapter mAdapter;
     private ProgressBar mProgres;
 
+    private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseReff;
+    private ValueEventListener mDBListener;
+
     private List<Keranjang> mKeranjang;
 
 
@@ -73,6 +79,7 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
         mRecycle.setHasFixedSize(true);
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        mStorage = FirebaseStorage.getInstance();
 
         mProgres = view.findViewById(R.id.progress_circle1);
 
@@ -80,13 +87,16 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
 
 
         mDatabaseReff = FirebaseDatabase.getInstance().getReference("keranjang");
-        mDatabaseReff.orderByChild("idPembeli").equalTo(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
+        mDBListener = mDatabaseReff.orderByChild("idPembeli").equalTo(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                mKeranjang.clear();
+
                 for (DataSnapshot postSnapShot : snapshot.getChildren()) {
                     Keranjang keranjang = postSnapShot.getValue(Keranjang.class);
+                    keranjang.setKey(postSnapShot.getKey());
                     mKeranjang.add(keranjang);
-
                 }
 
                 mAdapter = new KeranjangAdapter(getContext(), mKeranjang);
@@ -126,6 +136,12 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
     }
 
     public void removeItem(int position) {
+        Keranjang selectItem = mKeranjang.get(position);
+        final String selectedKey = selectItem.getKey();
+
+        mDatabaseReff.child(selectedKey).removeValue();
+        Toast.makeText(getContext(), "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
+
         mKeranjang.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
@@ -201,4 +217,9 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mDatabaseReff.removeEventListener(mDBListener);
+    }
 }

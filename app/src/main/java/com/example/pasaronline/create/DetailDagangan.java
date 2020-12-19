@@ -1,33 +1,29 @@
-package com.example.pasaronline.dagangan;
+package com.example.pasaronline.create;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pasaronline.MainActivity;
 import com.example.pasaronline.R;
-import com.example.pasaronline.fragment.KeranjangFragment;
 import com.example.pasaronline.model.Keranjang;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-import static com.example.pasaronline.fragment.HomeFragment.EXTRA_DESKRIPSI;
-import static com.example.pasaronline.fragment.HomeFragment.EXTRA_HARGA;
-import static com.example.pasaronline.fragment.HomeFragment.EXTRA_ID_BARANG;
-import static com.example.pasaronline.fragment.HomeFragment.EXTRA_JUMLAH;
-import static com.example.pasaronline.fragment.HomeFragment.EXTRA_NAMA_BARANG;
-import static com.example.pasaronline.fragment.HomeFragment.EXTRA_URL;
+import static com.example.pasaronline.read.HomeFragment.EXTRA_DESKRIPSI;
+import static com.example.pasaronline.read.HomeFragment.EXTRA_HARGA;
+import static com.example.pasaronline.read.HomeFragment.EXTRA_ID_BARANG;
+import static com.example.pasaronline.read.HomeFragment.EXTRA_JUMLAH;
+import static com.example.pasaronline.read.HomeFragment.EXTRA_NAMA_BARANG;
+import static com.example.pasaronline.read.HomeFragment.EXTRA_URL;
 
 public class DetailDagangan extends AppCompatActivity implements View.OnClickListener{
     //ini buat 22nya
