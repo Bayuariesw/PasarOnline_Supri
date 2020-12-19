@@ -2,6 +2,7 @@ package com.example.pasaronline;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -21,8 +22,8 @@ import com.midtrans.sdk.uikit.SdkUIFlowBuilder;
 import java.util.ArrayList;
 
 
-public class Payment extends AppCompatActivity implements TransactionFinishedCallback {
 
+public class Payment extends AppCompatActivity implements TransactionFinishedCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +52,11 @@ public class Payment extends AppCompatActivity implements TransactionFinishedCal
 
 
     private void clickPay() {
-        MidtransSDK.getInstance().setTransactionRequest(transactionRequest("101", 2000, 1, "John"));
-        MidtransSDK.getInstance().startPaymentUiFlow(this, PaymentMethod.BANK_TRANSFER_BCA );
+        MidtransSDK.getInstance().setTransactionRequest(transactionRequest("101", 20000, 1, "John"));
+        MidtransSDK.getInstance().startPaymentUiFlow(this);
     }
+
+
 
     public static CustomerDetails customerDetails() {
         CustomerDetails cd = new CustomerDetails();
@@ -64,7 +67,7 @@ public class Payment extends AppCompatActivity implements TransactionFinishedCal
     }
 
     public static TransactionRequest transactionRequest(String id, int price, int qty, String name) {
-        TransactionRequest request = new TransactionRequest(System.currentTimeMillis() + " ", 2000);
+        TransactionRequest request = new TransactionRequest(System.currentTimeMillis() + " ", 20000);
         request.setCustomerDetails(customerDetails());
         ItemDetails details = new ItemDetails(id, price, qty, name);
 
@@ -89,10 +92,10 @@ public class Payment extends AppCompatActivity implements TransactionFinishedCal
                     Toast.makeText(this, "Transaksi Berhasil ID : " + result.getResponse().getTransactionId(), Toast.LENGTH_SHORT).show();
                     break;
                 case TransactionResult.STATUS_PENDING:
-                    Toast.makeText(this, "Transaksi Pending ID " + result.getResponse().getTransactionId(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Transaksi Pending ID : " + result.getResponse().getTransactionId(), Toast.LENGTH_SHORT).show();
                     break;
                 case TransactionResult.STATUS_FAILED:
-                    Toast.makeText(this, "Transaksi Failed" + result.getResponse().getTransactionId(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Transaksi Gagal ID : " + result.getResponse().getTransactionId(), Toast.LENGTH_SHORT).show();
                     break;
             }
             result.getResponse().getValidationMessages();
@@ -100,9 +103,9 @@ public class Payment extends AppCompatActivity implements TransactionFinishedCal
             Toast.makeText(this, "Transaksi dibatalkan", Toast.LENGTH_LONG).show();
         } else {
             if (result.getStatus().equalsIgnoreCase((TransactionResult.STATUS_INVALID))) {
-                Toast.makeText(this, "Transaction Invalid" + result.getResponse().getTransactionId(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Transaksi gak valid" + result.getResponse().getTransactionId(), Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, "Something Wrong", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Ada yang salah nih", Toast.LENGTH_LONG).show();
             }
 
         }
