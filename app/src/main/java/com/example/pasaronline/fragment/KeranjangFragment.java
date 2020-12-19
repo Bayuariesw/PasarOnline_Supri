@@ -50,6 +50,7 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
     private DatabaseReference mDatabaseReff;
     private List<Keranjang> mKeranjang;
 
+
     public KeranjangFragment() {
         // Required empty public constructor
     }
@@ -72,15 +73,17 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
         mRecycle.setHasFixedSize(true);
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
         mProgres = view.findViewById(R.id.progress_circle1);
 
         mKeranjang = new ArrayList<>();
+
 
         mDatabaseReff = FirebaseDatabase.getInstance().getReference("keranjang");
         mDatabaseReff.orderByChild("idPembeli").equalTo(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot  postSnapShot : snapshot.getChildren()){
+                for (DataSnapshot postSnapShot : snapshot.getChildren()) {
                     Keranjang keranjang = postSnapShot.getValue(Keranjang.class);
                     mKeranjang.add(keranjang);
 
@@ -88,6 +91,12 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
 
                 mAdapter = new KeranjangAdapter(getContext(), mKeranjang);
                 mRecycle.setAdapter(mAdapter);
+                mAdapter.setOnItemClickListener(new KeranjangAdapter.OnItemClickListener() {
+                    @Override
+                    public void onDeleteClick(int position) {
+                        removeItem(position);
+                    }
+                });
                 mProgres.setVisibility(View.INVISIBLE);
             }
 
@@ -114,11 +123,13 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
         return view;
 
 
-
-
-
-
     }
+
+    public void removeItem(int position) {
+        mKeranjang.remove(position);
+        mAdapter.notifyItemRemoved(position);
+    }
+
     public void makePayment() {
         SdkUIFlowBuilder.init()
                 .setContext(getContext())
@@ -135,7 +146,6 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
         MidtransSDK.getInstance().setTransactionRequest(transactionRequest("101", 20000, 1, "John"));
         MidtransSDK.getInstance().startPaymentUiFlow(getContext());
     }
-
 
 
     public static CustomerDetails customerDetails() {
