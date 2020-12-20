@@ -91,30 +91,32 @@
                 android:textStyle="bold"/>
 
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <ImageView
                 android:id="@+id/btnMin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_below="@id/deskripsiTv"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="6dp"
                 android:layout_marginLeft="80dp"
                 android:clickable="true"
                 android:onClick="kurangSatu"
-                app:srcCompat="@drawable/ic_min"
-                tools:ignore="VectorDrawableCompat" />
+                app:srcCompat="@drawable/negative"
+                tools:ignore="VectorDrawableCompat"
+                android:elevation="20dp"/>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <ImageView
                 android:id="@+id/btnPlus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_below="@id/deskripsiTv"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="6dp"
                 android:layout_marginRight="80dp"
                 android:onClick="tambahSatu"
-                app:srcCompat="@drawable/ic_one"
-                tools:ignore="VectorDrawableCompat" />
+                app:srcCompat="@drawable/plus"
+                tools:ignore="VectorDrawableCompat"
+                android:elevation="20dp"/>
 
             <Button
                 android:id="@+id/btnKeranjang"

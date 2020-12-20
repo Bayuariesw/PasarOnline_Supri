@@ -15,6 +15,8 @@
         android:layout_marginStart="20dp"
         android:fontFamily="@font/gilroybbold"
         android:text="Ingin Daftar Kios ?"
+        android:layout_above="@+id/cdView"
+        android:layout_marginBottom="10dp"
         android:textColor="#1933F1"
         android:textSize="20sp"
         android:textStyle="normal" />

@@ -20,7 +20,6 @@ import com.example.pasaronline.Payment;
 import com.example.pasaronline.R;
 import com.example.pasaronline.adapter.KeranjangAdapter;
 import com.example.pasaronline.model.Keranjang;
-import com.example.pasaronline.model.Transaksi;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,7 +41,6 @@ import com.midtrans.sdk.corekit.models.BankType;
 import com.midtrans.sdk.corekit.models.CustomerDetails;
 import com.midtrans.sdk.corekit.models.ItemDetails;
 import com.midtrans.sdk.corekit.models.snap.CreditCard;
-import com.midtrans.sdk.corekit.models.snap.Transaction;
 import com.midtrans.sdk.corekit.models.snap.TransactionResult;
 import com.midtrans.sdk.uikit.SdkUIFlowBuilder;
 
@@ -59,7 +57,6 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
     private DatabaseReference mDatabaseReff;
     private ValueEventListener mDBListener;
     private FirebaseUser fUser;
-    private static Transaksi transaksi;
 
     private List<Keranjang> mKeranjang;
 
@@ -87,7 +84,6 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
         mRecycle.setLayoutManager(new LinearLayoutManager(getContext()));
 
         mProgres = view.findViewById(R.id.progress_circle1);
-        transaksi = new Transaksi();
 
         mKeranjang = new ArrayList<>();
         fUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -111,12 +107,11 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
                     @Override
                     public void onDeleteClick(int position) {
                         removeItem(position);
-                        Toast.makeText(getContext(), "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onBuyClick(int position) {
-                        clickPay(position);
+
                     }
                 });
                 mProgres.setVisibility(View.INVISIBLE);
@@ -129,15 +124,15 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
             }
         });
 
-//        Button bayar = view.findViewById(R.id.btn_bayar);
-//        bayar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                clickPay();
-//            }
-//        });
-
+        Button bayar = view.findViewById(R.id.btn_bayar);
+        bayar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickPay();
+            }
+        });
         return view;
+
     }
 
     public void removeItem(int position) {
@@ -145,6 +140,7 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
         final String selectedKey = selectItem.getKey();
 
         mDatabaseReff.child(selectedKey).removeValue();
+        Toast.makeText(getContext(), "Data berhasil dihapus", Toast.LENGTH_SHORT).show();
 
         mKeranjang.remove(position);
         mAdapter.notifyItemRemoved(position);
@@ -162,7 +158,7 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
     }
 
 
-    private void clickPay(int position) {
+    private void clickPay() {
 //        mDatabaseReff.orderByChild("idPembeli").equalTo(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -182,8 +178,10 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
 //
 //            }
 //        });
-        Keranjang selectItem = mKeranjang.get(position);
-        MidtransSDK.getInstance().setTransactionRequest(transactionRequest(selectItem.getId().toString(), Integer.parseInt(selectItem.getHargaBarang()), Integer.parseInt(selectItem.getJumlahBarang()), selectItem.getNamaBarang()));
+//        DocumentReference df = DatabaseReference
+        MidtransSDK.getInstance().setTransactionRequest(transactionRequest(
+                "1", 20000, 1, "semangka"
+        ));
         MidtransSDK.getInstance().startPaymentUiFlow(getContext());
     }
 
@@ -198,9 +196,6 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
                     cd.setFirstName(documentSnapshot.getString("Name"));
                     cd.setEmail(documentSnapshot.getString("Email"));
                     cd.setPhone(documentSnapshot.getString("Telp"));
-
-                    transaksi.setNamaPembeli(documentSnapshot.getString("Name"));
-                    transaksi.setEmailPembeli(documentSnapshot.getString("Email"));
                 }
             }
         });
@@ -209,38 +204,21 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
     }
 
     public static TransactionRequest transactionRequest(String id, int price, int qty, String name) {
-        TransactionRequest request = new TransactionRequest(System.currentTimeMillis() + " ", price*qty);
+        TransactionRequest request = new TransactionRequest(System.currentTimeMillis() + " ", price);
         request.setCustomerDetails(customerDetails());
 
         ItemDetails details = new ItemDetails(id, price, qty, name);
+
         ArrayList<ItemDetails> itemDetails = new ArrayList<>();
         itemDetails.add(details);
         request.setItemDetails(itemDetails);
-
         CreditCard creditCard = new CreditCard();
         creditCard.setSaveCard(false);
         creditCard.setAuthentication(CreditCard.AUTHENTICATION_TYPE_RBA);
         creditCard.setBank(BankType.BCA);
 
         request.setCreditCard(creditCard);
-        if (creditCard != null){
-            saveTransaksi(customerDetails(),details);
-        }
         return request;
-    }
-
-    private static void saveTransaksi(CustomerDetails customerDetails, ItemDetails details) {
-
-        DatabaseReference dbChart = FirebaseDatabase.getInstance().getReference("transaksi");
-        transaksi.setBarangId(details.getId());
-//        transaksi.setEmailPembeli(customerDetails.getEmail());
-//        transaksi.setNamaPembeli(customerDetails.getFirstName());
-        transaksi.setIdPembeli(FirebaseAuth.getInstance().getUid());
-        transaksi.setHargaBarang(details.getPrice().toString());
-        transaksi.setJumlahBarang(String.valueOf(details.getQuantity()));
-        transaksi.setNamaBarang(details.getName());
-        transaksi.setStatus("Berhasil");
-        dbChart.child(details.getId()).setValue(transaksi);
     }
 
 
