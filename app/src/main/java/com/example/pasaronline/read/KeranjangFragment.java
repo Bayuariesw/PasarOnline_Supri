@@ -91,9 +91,8 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
 
         mKeranjang = new ArrayList<>();
         fUser = FirebaseAuth.getInstance().getCurrentUser();
-
         mDatabaseReff = FirebaseDatabase.getInstance().getReference("keranjang");
-        mDBListener = mDatabaseReff.orderByChild("idPembeli").equalTo(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
+        mDBListener = mDatabaseReff.orderByChild("idPembeli").equalTo(fUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 

@@ -53,17 +53,17 @@
                     android:layout_marginTop="5dp"
                     android:layout_height="match_parent"/>
 
-                <Button
-                    android:id="@+id/btn_bayar"
-                    android:layout_width="300dp"
-                    android:layout_height="50dp"
-                    android:layout_below="@id/keranjangRv"
-                    android:layout_centerHorizontal="true"
-                    android:layout_margin="20dp"
-                    android:background="@drawable/login"
-                    android:fontFamily="@font/gilroyssemibold"
-                    android:text="Bayar"
-                    android:textColor="@color/white" />
+<!--                <Button-->
+<!--                    android:id="@+id/btn_bayar"-->
+<!--                    android:layout_width="300dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_below="@id/keranjangRv"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:layout_margin="20dp"-->
+<!--                    android:background="@drawable/login"-->
+<!--                    android:fontFamily="@font/gilroyssemibold"-->
+<!--                    android:text="Bayar"-->
+<!--                    android:textColor="@color/white" />-->
             </RelativeLayout>
 
         </ScrollView>
