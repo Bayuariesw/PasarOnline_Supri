@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="16dp"
-    app:cardCornerRadius="20dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,7 +20,7 @@
             app:cardCornerRadius="20dp">
 
             <ImageView
-                android:id="@+id/imgKeranjnag"
+                android:id="@+id/imgTransaksi"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:src="@mipmap/ic_launcher"/>
@@ -35,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
-                android:id="@+id/tvBarang2"
+                android:id="@+id/namaBarang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -46,11 +44,11 @@
                 android:layout_marginRight="16dp"/>
 
             <TextView
-                android:id="@+id/tvHarga2"
+                android:id="@+id/transHarga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvBarang2"
-                android:text="Harga"
+                android:layout_below="@id/namaBarang"
+                android:text="Total Harga"
                 android:fontFamily="@font/gilroymedium"
                 android:textColor="#E91E63"
                 android:textSize="20sp"
@@ -59,37 +57,28 @@
                 android:layout_marginRight="16dp"/>
 
             <TextView
-                android:id="@+id/tvJumlah2"
+                android:id="@+id/total"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_below="@id/tvHarga2"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/transHarga"
                 android:text="Jumlah Belanja"
                 android:textSize="16sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"/>
 
-            <ImageView
-                android:id="@+id/hapus"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@mipmap/ic_remove_round"
-                android:layout_alignParentRight="true"
+            <TextView
+                android:id="@+id/pembeli"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/total"
+                android:text="pembeli"
+                android:textSize="16sp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:elevation="10dp"/>
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"/>
 
-            <ImageView
-                android:id="@+id/buy"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@mipmap/ic_remove_round"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="10dp"
-                android:elevation="10dp"/>
         </RelativeLayout>
 
     </RelativeLayout>
-
-</com.google.android.material.card.MaterialCardView>
+</androidx.cardview.widget.CardView>

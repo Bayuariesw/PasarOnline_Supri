@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".read.TransaksiFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvhome"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="10dp">
+
+                <TextView
+                    android:id="@+id/tvUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/gilroyssemibold"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Transaksi"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/transaksiRv"
+                android:layout_width="match_parent"
+                android:layout_below="@id/cvhome"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

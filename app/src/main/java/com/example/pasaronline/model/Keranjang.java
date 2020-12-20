@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import com.google.firebase.database.Exclude;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Keranjang implements Parcelable {
     private String id;
     private String idPembeli;
@@ -123,7 +126,13 @@ public class Keranjang implements Parcelable {
         dest.writeString(imageUrl);
     }
 
-    public double getTotalPrice(){
-        return 1;
-    }
+//    public Map<String,Object> toMap(){
+//        HashMap<String,Object> result = new HashMap<>();
+//        result.put("idPembeli",idPembeli);
+//        result.put("hargaBarang",hargaBarang);
+//        result.put("jumlahBarang",jumlahBarang);
+//        result.put("namaBarang",namaBarang);
+//
+//        return result;
+//    }
 }

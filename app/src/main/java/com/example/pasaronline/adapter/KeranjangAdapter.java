@@ -30,6 +30,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
 
     public interface OnItemClickListener  {
         void onDeleteClick(int position);
+        void onBuyClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -48,8 +49,8 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
     public void onBindViewHolder(@NonNull KeranjangViewHolder holder, int position) {
         Keranjang keranjangNow = mKeranjangList.get(position);
         holder.nama.setText(keranjangNow.getNamaBarang());
-        holder.harga.setText("Harga :" + keranjangNow.getHargaBarang());
-        holder.jumlah.setText("Jumlah Belanja :" + keranjangNow.getJumlahBarang());
+        holder.harga.setText("Harga : " + keranjangNow.getHargaBarang());
+        holder.jumlah.setText("Jumlah Belanja : " + keranjangNow.getJumlahBarang());
 
         Picasso.with(mContextl)
                 .load(mKeranjangList.get(position).getImageUrl())
@@ -65,12 +66,13 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
     }
 
     public class KeranjangViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imgKeranjang,hapus;
+        public ImageView imgKeranjang,hapus,buy;
         public TextView nama, harga, jumlah;
 
         public KeranjangViewHolder(@NonNull View itemView) {
             super(itemView);
             hapus = itemView.findViewById(R.id.hapus);
+            buy = itemView.findViewById(R.id.buy);
             nama = itemView.findViewById(R.id.tvBarang2);
             harga = itemView.findViewById(R.id.tvHarga2);
             jumlah = itemView.findViewById(R.id.tvJumlah2);
@@ -84,6 +86,19 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
                         if (position != RecyclerView.NO_POSITION){
                             mListener.onDeleteClick(position);
                         }
+                    }
+                }
+            });
+
+            buy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if (position!= RecyclerView.NO_POSITION){
+                            mListener.onBuyClick(position);
+                        }
+
                     }
                 }
             });

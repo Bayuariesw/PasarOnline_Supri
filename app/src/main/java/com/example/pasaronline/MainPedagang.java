@@ -12,6 +12,7 @@ import com.example.pasaronline.read.HomeFragment;
 import com.example.pasaronline.read.PedagangFragment;
 import com.example.pasaronline.read.ProfileFragment;
 import com.example.pasaronline.create.TambahFragment;
+import com.example.pasaronline.read.TransaksiFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainPedagang extends AppCompatActivity {
@@ -55,6 +56,9 @@ public class MainPedagang extends AppCompatActivity {
                     break;
                 case R.id.tambah:
                     frag = new TambahFragment();
+                    break;
+                case R.id.transaksi:
+                    frag = new TransaksiFragment();
                     break;
                 case R.id.profil:
                     frag = new PedagangFragment();
