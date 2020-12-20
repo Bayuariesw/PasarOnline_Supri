@@ -61,7 +61,7 @@
             <TextView
                 android:id="@+id/tvJumlah2"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/tvHarga2"
                 android:text="Jumlah Belanja"
                 android:textSize="16sp"

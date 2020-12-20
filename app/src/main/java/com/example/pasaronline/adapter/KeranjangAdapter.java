@@ -66,7 +66,8 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
     }
 
     public class KeranjangViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imgKeranjang,hapus,buy;
+        public ImageView imgKeranjang,hapus;
+        public Button buy;
         public TextView nama, harga, jumlah;
 
         public KeranjangViewHolder(@NonNull View itemView) {
