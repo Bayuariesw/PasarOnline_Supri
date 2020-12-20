@@ -79,7 +79,8 @@
                     android:fontFamily="@font/gilroymedium"
                     android:textSize="20dp"
                     android:gravity="center_vertical"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:inputType="text"/>
             </LinearLayout>
 
             <LinearLayout
@@ -108,7 +109,8 @@
                     android:fontFamily="@font/gilroymedium"
                     android:textSize="20dp"
                     android:gravity="center_vertical"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:inputType="textPersonName"/>
             </LinearLayout>
 
             <LinearLayout
@@ -137,7 +139,8 @@
                     android:fontFamily="@font/gilroymedium"
                     android:textSize="20dp"
                     android:gravity="center_vertical"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:inputType="textEmailAddress"/>
             </LinearLayout>
 
             <LinearLayout
@@ -166,7 +169,8 @@
                     android:fontFamily="@font/gilroymedium"
                     android:textSize="20dp"
                     android:gravity="center_vertical"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:inputType="number"/>
             </LinearLayout>
 
             <Button

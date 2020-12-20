@@ -68,24 +68,24 @@ public class EditUser extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cekNama = findViewById(R.id.namabaruU);
-                cekEmail = findViewById(R.id.emailbaruU);
-                cekTelp = findViewById(R.id.telpbaruU);
+                namabaru = findViewById(R.id.namabaruU);
+                emailbaru = findViewById(R.id.emailbaruU);
+                telpbaru = findViewById(R.id.telpbaruU);
 
-                checkField(cekNama);
-                checkField(cekEmail);
-                checkField(cekTelp);
+                checkField(namabaru);
+                checkField(emailbaru);
+                checkField(telpbaru);
 
                 if (valid){
-                    final String emails = cekEmail.getText().toString();
-                    fUser.updateEmail(emails).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    String emails = cekEmail.getText().toString();
+                    fUser.updateEmail(emailbaru.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             DocumentReference df = fStore.collection("Users").document(fAuth.getUid());
                             Map<String,Object> userInfo = new HashMap<>();
-                            userInfo.put("Name", cekNama.getText().toString());
-                            userInfo.put("Email", emails);
-                            userInfo.put("Telp", cekTelp.getText().toString());
+                            userInfo.put("Name", namabaru.getText().toString());
+                            userInfo.put("Email", emailbaru.getText().toString());
+                            userInfo.put("Telp", telpbaru.getText().toString());
 
                             df.update(userInfo);
 
@@ -109,6 +109,7 @@ public class EditUser extends AppCompatActivity {
     private boolean checkField(EditText textField) {
         if(textField.getText().toString().isEmpty()){
             textField.setError("Error");
+            Toast.makeText(this, "Isi field", Toast.LENGTH_SHORT).show();
             valid = false;
         }else {
             valid = true;

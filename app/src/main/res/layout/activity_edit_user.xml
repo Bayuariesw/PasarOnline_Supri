@@ -81,6 +81,7 @@
                     android:text="nama baru"
                     android:fontFamily="@font/gilroymedium"
                     android:textSize="20dp"
+                    android:inputType="textPersonName"
                     android:gravity="center_vertical"
                     android:layout_marginLeft="10dp"/>
             </LinearLayout>
@@ -110,6 +111,7 @@
                     android:text="email baru"
                     android:fontFamily="@font/gilroymedium"
                     android:textSize="20dp"
+                    android:inputType="textEmailAddress"
                     android:gravity="center_vertical"
                     android:layout_marginLeft="10dp"/>
             </LinearLayout>
@@ -140,7 +142,8 @@
                     android:fontFamily="@font/gilroymedium"
                     android:textSize="20dp"
                     android:gravity="center_vertical"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:inputType="number"/>
             </LinearLayout>
 
             <Button
