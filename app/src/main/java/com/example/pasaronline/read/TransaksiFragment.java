@@ -58,7 +58,7 @@ public class TransaksiFragment extends Fragment {
         mProgress = view.findViewById(R.id.progress);
         mTransaksi = new ArrayList<>();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("transaksi");
-        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+        mDatabaseRef.orderByChild("status").equalTo("Berhasil").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 mTransaksi.clear();
