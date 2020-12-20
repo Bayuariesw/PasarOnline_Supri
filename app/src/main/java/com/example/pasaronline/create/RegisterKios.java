@@ -62,7 +62,7 @@ public class RegisterKios extends AppCompatActivity {
                 checkField(telp);
                 checkField(alamat);
 
-                if(valid){
+                if (valid) {
                     fAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
@@ -102,10 +102,10 @@ public class RegisterKios extends AppCompatActivity {
     }
 
     private boolean checkField(EditText textField) {
-        if(textField.getText().toString().isEmpty()){
+        if (textField.getText().toString().isEmpty()) {
             textField.setError("Error");
             valid = false;
-        }else {
+        } else {
             valid = true;
         }
 

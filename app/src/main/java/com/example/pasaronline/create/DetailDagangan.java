@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,11 +12,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pasaronline.MainActivity;
+import com.example.pasaronline.MainPedagang;
 import com.example.pasaronline.R;
 import com.example.pasaronline.model.Keranjang;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import static com.example.pasaronline.read.HomeFragment.EXTRA_DESKRIPSI;
@@ -37,6 +44,8 @@ public class DetailDagangan extends AppCompatActivity implements View.OnClickLis
     private String imgUrl, idBarang;
     private Button tambahKeranjang;
     private DatabaseReference mDatabase;
+    private FirebaseUser fUser;
+    private FirebaseFirestore fStore;
     private Keranjang keranjang;
 
 
@@ -55,6 +64,7 @@ public class DetailDagangan extends AppCompatActivity implements View.OnClickLis
         banyak = findViewById(R.id.banyakTv);
         tambahKeranjang = findViewById(R.id.btnKeranjang);
 
+        fUser = FirebaseAuth.getInstance().getCurrentUser();
         Intent intent = getIntent();
         imgUrl = intent.getStringExtra(EXTRA_URL);
         namaBarang = intent.getStringExtra(EXTRA_NAMA_BARANG);
@@ -73,7 +83,6 @@ public class DetailDagangan extends AppCompatActivity implements View.OnClickLis
         jumlah.setText("Jumlah : "+jmlBarang);
 
         tambahKeranjang.setOnClickListener(this);
-
         keranjang = new Keranjang();
 
     }

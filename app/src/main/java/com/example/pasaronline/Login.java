@@ -48,14 +48,14 @@ public class Login extends AppCompatActivity {
         mProgres = findViewById(R.id.progress_circle4);
 
         mProgres.setVisibility(View.INVISIBLE);
-        
-        btnLogin.setOnClickListener(new View.OnClickListener(){
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkField(email);
                 checkField(password);
 
-                if (valid){
+                if (valid) {
                     fAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
@@ -72,9 +72,9 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        btnRegister.setOnClickListener(new View.OnClickListener(){
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), RegisterUser.class));
             }
         });
@@ -85,14 +85,14 @@ public class Login extends AppCompatActivity {
         DocumentReference dfKios = fStore.collection("Kios").document(uid);
         //extrak data
 
-        if (df != null){
+        if (df != null) {
             df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    Log.d("TAG","onSucces:"+documentSnapshot.getData());
+                    Log.d("TAG", "onSucces:" + documentSnapshot.getData());
 
                     //identtifikasi user access level
-                    if (documentSnapshot.getString("isUser") != null){
+                    if (documentSnapshot.getString("isUser") != null) {
                         //user
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         mProgres.setVisibility(View.VISIBLE);
@@ -101,14 +101,14 @@ public class Login extends AppCompatActivity {
                 }
             });
         }
-        if (dfKios != null){
+        if (dfKios != null) {
             dfKios.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    Log.d("TAG","onSucces:"+documentSnapshot.getData());
+                    Log.d("TAG", "onSucces:" + documentSnapshot.getData());
 
                     //identias kios
-                    if (documentSnapshot.getString("isKios") != null){
+                    if (documentSnapshot.getString("isKios") != null) {
                         //user
                         startActivity(new Intent(getApplicationContext(), MainPedagang.class));
                         mProgres.setVisibility(View.VISIBLE);
@@ -120,10 +120,10 @@ public class Login extends AppCompatActivity {
     }
 
     private boolean checkField(EditText textField) {
-        if(textField.getText().toString().isEmpty()){
+        if (textField.getText().toString().isEmpty()) {
             textField.setError("Error");
             valid = false;
-        }else {
+        } else {
             valid = true;
         }
 
@@ -133,19 +133,19 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (FirebaseAuth.getInstance().getCurrentUser() != null){
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             DocumentReference df = fStore.collection("Users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
             DocumentReference dfKios = fStore.collection("Kios").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
             //extrak data
 
-            if (df != null){
+            if (df != null) {
                 df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        Log.d("TAG","onSucces:"+documentSnapshot.getData());
+                        Log.d("TAG", "onSucces:" + documentSnapshot.getData());
 
                         //identtifikasi user access level
-                        if (documentSnapshot.getString("isUser") != null){
+                        if (documentSnapshot.getString("isUser") != null) {
                             //user
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             mProgres.setVisibility(View.INVISIBLE);
@@ -154,14 +154,14 @@ public class Login extends AppCompatActivity {
                     }
                 });
             }
-            if (dfKios != null){
+            if (dfKios != null) {
                 dfKios.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        Log.d("TAG","onSucces:"+documentSnapshot.getData());
+                        Log.d("TAG", "onSucces:" + documentSnapshot.getData());
 
                         //identias kios
-                        if (documentSnapshot.getString("isKios") != null){
+                        if (documentSnapshot.getString("isKios") != null) {
                             //user
                             startActivity(new Intent(getApplicationContext(), MainPedagang.class));
                             mProgres.setVisibility(View.INVISIBLE);

@@ -70,7 +70,7 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_tambah, container, false);
+        View view = inflater.inflate(R.layout.fragment_tambah, container, false);
 
         mstorageRef = FirebaseStorage.getInstance().getReference("uploads");
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -97,10 +97,10 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
         if (v.getId() == R.id.btnAdd) {
             saveDagangan();
         }
-        if (v.getId() == R.id.btnChoose){
-            if (mUploadTask != null && mUploadTask.isInProgress()){
+        if (v.getId() == R.id.btnChoose) {
+            if (mUploadTask != null && mUploadTask.isInProgress()) {
                 Toast.makeText(getContext(), "Upload Foto", Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 chooseImage();
             }
         }
@@ -116,7 +116,7 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null){
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             mImageUri = data.getData();
 
             imgView.setImageURI(mImageUri);
@@ -148,7 +148,7 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private String getFileExtension(Uri uri){
+    private String getFileExtension(Uri uri) {
         ContentResolver cr = getActivity().getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cr.getType(uri));
@@ -184,7 +184,7 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
         }
 
         if (!isEmptyFields) {
-            if (mImageUri != null){
+            if (mImageUri != null) {
                 final StorageReference fileRefrences = mstorageRef.child(System.currentTimeMillis()
                         + "." + getFileExtension(mImageUri));
 
@@ -249,7 +249,7 @@ public class TambahFragment extends Fragment implements View.OnClickListener {
                                 pBar.setProgress((int) progres);
                             }
                         });
-            }else {
+            } else {
                 Toast.makeText(getContext(), "Masukan foto", Toast.LENGTH_SHORT).show();
             }
 

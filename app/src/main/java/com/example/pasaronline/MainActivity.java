@@ -17,6 +17,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
     //buat main activity pengguna
+
+    // Team : Supri
+    // Anggota :
+    //           1. 18523280 - Safik Widiantoro
+    //           2. 18523276 - Muhammad Zaki Naufali
+    //           3. 18523281 - Bayu Aries Wicaksono
+
+
     private BottomNavigationView btmNav2;
     private FrameLayout fLayout2;
     private FirebaseAuth fAuth;
@@ -35,14 +43,14 @@ public class MainActivity extends AppCompatActivity {
         fLayout2 = findViewById(R.id.containerUser);
 
         String extra = getIntent().getStringExtra("keranjang");
-        if (extra != null && extra.equals("keKeranjang")){
+        if (extra != null && extra.equals("keKeranjang")) {
             getSupportFragmentManager().beginTransaction().replace(R.id.containerUser, new KeranjangFragment()).commit();
             btmNav2.setSelectedItemId(R.id.keranjang);
         }
 
         String extraProfile = getIntent().getStringExtra("profile");
-        if (extraProfile != null && extraProfile.equals("keProfile")){
-            getSupportFragmentManager().beginTransaction().replace(R.id.containerUser,new ProfileFragment()).commit();
+        if (extraProfile != null && extraProfile.equals("keProfile")) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerUser, new ProfileFragment()).commit();
             btmNav2.setSelectedItemId(R.id.profilUser);
         }
 
@@ -54,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             Fragment frag = null;
 
-            switch (menuItem.getItemId()){
+            switch (menuItem.getItemId()) {
                 case R.id.home2:
                     frag = new HomeFragment();
                     break;

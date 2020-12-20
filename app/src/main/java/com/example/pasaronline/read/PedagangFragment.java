@@ -61,7 +61,7 @@ public class PedagangFragment extends Fragment {
         df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
+                if (documentSnapshot.exists()) {
                     String namaUser = documentSnapshot.getString("Name");
                     String namaToko = documentSnapshot.getString("NameKios");
                     String emailUser = documentSnapshot.getString("Email");
@@ -83,10 +83,10 @@ public class PedagangFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), EditPedagang.class);
-                intent.putExtra(EXTRA_NAMA_PEDAGANG,namaPemilik.getText().toString());
-                intent.putExtra(EXTRA_NAMA_KIOS,namaKios.getText().toString());
-                intent.putExtra(EXTRA_EMAIL_KIOS,email.getText().toString());
-                intent.putExtra(EXTRA_TELP_KIOS,telp.getText().toString());
+                intent.putExtra(EXTRA_NAMA_PEDAGANG, namaPemilik.getText().toString());
+                intent.putExtra(EXTRA_NAMA_KIOS, namaKios.getText().toString());
+                intent.putExtra(EXTRA_EMAIL_KIOS, email.getText().toString());
+                intent.putExtra(EXTRA_TELP_KIOS, telp.getText().toString());
 
                 startActivity(intent);
             }
@@ -94,12 +94,12 @@ public class PedagangFragment extends Fragment {
 
         //logout
         logOut = view.findViewById(R.id.btnLogOut);
-        logOut.setOnClickListener(new View.OnClickListener(){
+        logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(getActivity().getApplicationContext(), Login.class));
-            getActivity().finish();
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getActivity().getApplicationContext(), Login.class));
+                getActivity().finish();
             }
         });
 

@@ -28,8 +28,9 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
         mKeranjangList = keranjangs;
     }
 
-    public interface OnItemClickListener  {
+    public interface OnItemClickListener {
         void onDeleteClick(int position);
+
         void onBuyClick(int position);
     }
 
@@ -66,7 +67,7 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
     }
 
     public class KeranjangViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imgKeranjang,hapus;
+        public ImageView imgKeranjang, hapus;
         public Button buy;
         public TextView nama, harga, jumlah;
 
@@ -82,9 +83,9 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
             hapus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (mListener != null){
+                    if (mListener != null) {
                         int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             mListener.onDeleteClick(position);
                         }
                     }
@@ -94,9 +95,9 @@ public class KeranjangAdapter extends RecyclerView.Adapter<KeranjangAdapter.Kera
             buy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(mListener != null){
+                    if (mListener != null) {
                         int position = getAdapterPosition();
-                        if (position!= RecyclerView.NO_POSITION){
+                        if (position != RecyclerView.NO_POSITION) {
                             mListener.onBuyClick(position);
                         }
 

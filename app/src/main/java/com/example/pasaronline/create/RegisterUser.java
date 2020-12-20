@@ -50,7 +50,7 @@ public class RegisterUser extends AppCompatActivity {
         login = findViewById(R.id.tvLogin);
         btnReisterKios = findViewById(R.id.tvKios);
 
-        btnRegister.setOnClickListener(new View.OnClickListener(){
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkField(nama);
@@ -58,7 +58,7 @@ public class RegisterUser extends AppCompatActivity {
                 checkField(password);
                 checkField(telp);
 
-                if (valid){
+                if (valid) {
                     //mulai user registrasi
                     fAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
@@ -66,7 +66,7 @@ public class RegisterUser extends AppCompatActivity {
                             FirebaseUser user = fAuth.getCurrentUser();
                             Toast.makeText(RegisterUser.this, "Akun Berhasil dibuat", Toast.LENGTH_SHORT).show();
                             DocumentReference df = fStore.collection("Users").document(user.getUid());
-                            Map<String,Object> userInfo = new HashMap<>();
+                            Map<String, Object> userInfo = new HashMap<>();
                             userInfo.put("Name", nama.getText().toString());
                             userInfo.put("Email", email.getText().toString());
                             userInfo.put("Telp", telp.getText().toString());
@@ -87,7 +87,7 @@ public class RegisterUser extends AppCompatActivity {
             }
         });
 
-        login.setOnClickListener(new View.OnClickListener(){
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Login.class));
@@ -103,10 +103,10 @@ public class RegisterUser extends AppCompatActivity {
     }
 
     private boolean checkField(EditText textField) {
-        if(textField.getText().toString().isEmpty()){
+        if (textField.getText().toString().isEmpty()) {
             textField.setError("Error");
             valid = false;
-        }else {
+        } else {
             valid = true;
         }
 

@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
     private ProgressBar mProgress;
     private TextView namaUser;
     private EditText searchView;
-    CharSequence search ="";
+    private CharSequence search = "";
 
     private DatabaseReference mDatabaseRef;
     private List<Dagangan> mDagang;
@@ -128,6 +128,7 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
 
             }
         });
+
         return view;
     }
 
@@ -173,7 +174,7 @@ public class HomeFragment extends Fragment implements DaganganAdapter.OnItemClic
 
     @Override
     public void onItemClick(int position) {
-        //new inten
+        //new inten to Detail
         Intent detailIntent = new Intent(getContext(), DetailDagangan.class);
         Dagangan clickItem = mDagang.get(position);
         //get data

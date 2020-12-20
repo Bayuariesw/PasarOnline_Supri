@@ -28,7 +28,7 @@ import static com.example.pasaronline.read.ProfileFragment.EXTRA_TELP;
 
 public class EditUser extends AppCompatActivity {
 
-    private EditText namabaru,emailbaru,telpbaru;
+    private EditText namabaru, emailbaru, telpbaru;
     private String nama, email, telp;
     private Button edit;
     private DatabaseReference database;
@@ -44,9 +44,9 @@ public class EditUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
 
-        namabaru= findViewById(R.id.namabaruU);
-        emailbaru= findViewById(R.id.emailbaruU);
-        telpbaru= findViewById(R.id.telpbaruU);
+        namabaru = findViewById(R.id.namabaruU);
+        emailbaru = findViewById(R.id.emailbaruU);
+        telpbaru = findViewById(R.id.telpbaruU);
         edit = findViewById(R.id.btn_update);
         mProgress = findViewById(R.id.progress_circlee);
         mProgress.setVisibility(View.INVISIBLE);
@@ -76,13 +76,12 @@ public class EditUser extends AppCompatActivity {
                 checkField(emailbaru);
                 checkField(telpbaru);
 
-                if (valid){
-//                    String emails = cekEmail.getText().toString();
+                if (valid) {
                     fUser.updateEmail(emailbaru.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             DocumentReference df = fStore.collection("Users").document(fAuth.getUid());
-                            Map<String,Object> userInfo = new HashMap<>();
+                            Map<String, Object> userInfo = new HashMap<>();
                             userInfo.put("Name", namabaru.getText().toString());
                             userInfo.put("Email", emailbaru.getText().toString());
                             userInfo.put("Telp", telpbaru.getText().toString());
@@ -99,7 +98,7 @@ public class EditUser extends AppCompatActivity {
 
                         }
                     });
-                }else {
+                } else {
                     Toast.makeText(EditUser.this, "Jangan kosongkan field", Toast.LENGTH_LONG).show();
                 }
             }
@@ -107,11 +106,11 @@ public class EditUser extends AppCompatActivity {
     }
 
     private boolean checkField(EditText textField) {
-        if(textField.getText().toString().isEmpty()){
+        if (textField.getText().toString().isEmpty()) {
             textField.setError("Error");
             Toast.makeText(this, "Isi field", Toast.LENGTH_SHORT).show();
             valid = false;
-        }else {
+        } else {
             valid = true;
         }
 

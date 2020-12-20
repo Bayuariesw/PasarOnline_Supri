@@ -15,7 +15,6 @@
         tools:replace="android:allowBackup">
         <activity android:name=".update.EditPedagang"></activity>
         <activity android:name=".update.EditUser" />
-        <activity android:name=".Payment" />
         <activity android:name=".Opening">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

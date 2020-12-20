@@ -62,7 +62,7 @@ public class TransaksiFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 mTransaksi.clear();
-                for (DataSnapshot postSnapShot : snapshot.getChildren()){
+                for (DataSnapshot postSnapShot : snapshot.getChildren()) {
                     Transaksi transaksi = postSnapShot.getValue(Transaksi.class);
                     mTransaksi.add(transaksi);
                 }

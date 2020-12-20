@@ -1,6 +1,5 @@
 package com.example.pasaronline.read;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,12 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.pasaronline.BuildConfig;
-import com.example.pasaronline.Payment;
 import com.example.pasaronline.R;
 import com.example.pasaronline.adapter.KeranjangAdapter;
 import com.example.pasaronline.model.Keranjang;
@@ -32,8 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback;
 import com.midtrans.sdk.corekit.core.MidtransSDK;
 import com.midtrans.sdk.corekit.core.TransactionRequest;
@@ -42,7 +37,6 @@ import com.midtrans.sdk.corekit.models.BankType;
 import com.midtrans.sdk.corekit.models.CustomerDetails;
 import com.midtrans.sdk.corekit.models.ItemDetails;
 import com.midtrans.sdk.corekit.models.snap.CreditCard;
-import com.midtrans.sdk.corekit.models.snap.Transaction;
 import com.midtrans.sdk.corekit.models.snap.TransactionResult;
 import com.midtrans.sdk.uikit.SdkUIFlowBuilder;
 
@@ -91,6 +85,8 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
 
         mKeranjang = new ArrayList<>();
         fUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        //Read CRUD
         mDatabaseReff = FirebaseDatabase.getInstance().getReference("keranjang");
         mDBListener = mDatabaseReff.orderByChild("idPembeli").equalTo(fUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -128,17 +124,10 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
             }
         });
 
-//        Button bayar = view.findViewById(R.id.btn_bayar);
-//        bayar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                clickPay();
-//            }
-//        });
-
         return view;
     }
 
+    //Delet CRUD
     public void removeItem(int position) {
         Keranjang selectItem = mKeranjang.get(position);
         final String selectedKey = selectItem.getKey();
@@ -160,27 +149,7 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
                 .buildSDK();
     }
 
-
     private void clickPay(int position) {
-//        mDatabaseReff.orderByChild("idPembeli").equalTo(FirebaseAuth.getInstance().getUid()).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                int totalHarga = 0;
-//                int totalBarang = 0;
-//                for (DataSnapshot postSnapShot : snapshot.getChildren()) {
-//                    Keranjang keranjang = postSnapShot.getValue(Keranjang.class);
-//                    totalHarga += Integer.parseInt(keranjang.getHargaBarang());
-//                    totalBarang += Integer.parseInt(keranjang.getJumlahBarang());
-//                }
-//                MidtransSDK.getInstance().setTransactionRequest(transactionRequest("1", totalHarga, totalBarang, "Total"));
-//                MidtransSDK.getInstance().startPaymentUiFlow(getContext());
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
         Keranjang selectItem = mKeranjang.get(position);
         MidtransSDK.getInstance().setTransactionRequest(transactionRequest(selectItem.getId().toString(), Integer.parseInt(selectItem.getHargaBarang()), Integer.parseInt(selectItem.getJumlahBarang()), selectItem.getNamaBarang()));
         posisi(position);
@@ -191,14 +160,13 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
         removeItem(position);
     }
 
-
     public static CustomerDetails customerDetails() {
         final CustomerDetails cd = new CustomerDetails();
         DocumentReference akun = FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid());
         akun.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
+                if (documentSnapshot.exists()) {
                     cd.setFirstName(documentSnapshot.getString("Name"));
                     cd.setEmail(documentSnapshot.getString("Email"));
                     cd.setPhone(documentSnapshot.getString("Telp"));
@@ -213,7 +181,7 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
     }
 
     public static TransactionRequest transactionRequest(String id, int price, int qty, String name) {
-        TransactionRequest request = new TransactionRequest(System.currentTimeMillis() + " ", price*qty);
+        TransactionRequest request = new TransactionRequest(System.currentTimeMillis() + " ", price * qty);
         request.setCustomerDetails(customerDetails());
 
         ItemDetails details = new ItemDetails(id, price, qty, name);
@@ -227,24 +195,25 @@ public class KeranjangFragment extends Fragment implements TransactionFinishedCa
         creditCard.setBank(BankType.BCA);
 
         request.setCreditCard(creditCard);
-        if (creditCard != null){
-            saveTransaksi(customerDetails(),details);
+        if (creditCard != null) {
+            saveTransaksi(customerDetails(), details);
         }
         return request;
     }
 
+    //Create CRUD
     private static void saveTransaksi(CustomerDetails customerDetails, ItemDetails details) {
-
         DatabaseReference dbChart = FirebaseDatabase.getInstance().getReference("transaksi");
         transaksi.setBarangId(details.getId());
-//        transaksi.setEmailPembeli(customerDetails.getEmail());
-//        transaksi.setNamaPembeli(customerDetails.getFirstName());
+        transaksi.setEmailPembeli(customerDetails.getEmail());
+        transaksi.setNamaPembeli(customerDetails.getFirstName());
         transaksi.setIdPembeli(FirebaseAuth.getInstance().getUid());
         transaksi.setHargaBarang(details.getPrice().toString());
         transaksi.setJumlahBarang(String.valueOf(details.getQuantity()));
         transaksi.setNamaBarang(details.getName());
         transaksi.setStatus("Berhasil");
         dbChart.child(details.getId()).setValue(transaksi);
+
     }
 
 

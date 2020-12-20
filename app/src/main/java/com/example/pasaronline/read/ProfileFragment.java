@@ -57,7 +57,7 @@ public class ProfileFragment extends Fragment {
         df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
+                if (documentSnapshot.exists()) {
                     String namaUser = documentSnapshot.getString("Name");
                     String emailUser = documentSnapshot.getString("Email");
                     String telpUser = documentSnapshot.getString("Telp");
@@ -74,11 +74,10 @@ public class ProfileFragment extends Fragment {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(getContext(), EditUser.class));
                 Intent intent = new Intent(getContext(), EditUser.class);
-                intent.putExtra(EXTRA_NAMA,nama.getText().toString());
-                intent.putExtra(EXTRA_EMAIL,email.getText().toString());
-                intent.putExtra(EXTRA_TELP,telp.getText().toString());
+                intent.putExtra(EXTRA_NAMA, nama.getText().toString());
+                intent.putExtra(EXTRA_EMAIL, email.getText().toString());
+                intent.putExtra(EXTRA_TELP, telp.getText().toString());
 
                 startActivity(intent);
             }

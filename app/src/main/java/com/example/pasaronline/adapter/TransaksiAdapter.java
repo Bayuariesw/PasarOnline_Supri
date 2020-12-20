@@ -54,7 +54,7 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.Tran
 
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
+                if (documentSnapshot.exists()) {
                     nama[0] = documentSnapshot.getString("Name");
                 }
             }
@@ -67,7 +67,7 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.Tran
         return mTransaksiList.size();
     }
 
-    public class TransaksiViewHolder extends RecyclerView.ViewHolder{
+    public class TransaksiViewHolder extends RecyclerView.ViewHolder {
         public ImageView imgBarang;
         public TextView namaBarang, hargaBarang, jumlahBarang, pembeli;
 

@@ -16,10 +16,11 @@ public class Transaksi implements Parcelable {
     private String imageUrl;
     private String mKey;
 
-    public Transaksi(){
+    public Transaksi() {
 
     }
-    protected Transaksi(Parcel in){
+
+    protected Transaksi(Parcel in) {
         idTransaksi = in.readString();
         idPembeli = in.readString();
         namaPembeli = in.readString();

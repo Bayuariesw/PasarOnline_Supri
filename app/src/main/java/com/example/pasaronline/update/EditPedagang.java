@@ -78,16 +78,15 @@ public class EditPedagang extends AppCompatActivity {
                 checkField(email);
                 checkField(telp);
 
-                if (valid){
-                    final String emaill = email.getText().toString();
-                    fUser.updateEmail(emaill).addOnSuccessListener(new OnSuccessListener<Void>() {
+                if (valid) {
+                    fUser.updateEmail(email.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             DocumentReference df = fStore.collection("Kios").document(fAuth.getUid());
-                            Map<String,Object> userInfo = new HashMap<>();
+                            Map<String, Object> userInfo = new HashMap<>();
                             userInfo.put("Name", namaPedagang.getText().toString());
                             userInfo.put("NameKios", namaKios.getText().toString());
-                            userInfo.put("Email", emaill);
+                            userInfo.put("Email", email.getText().toString());
                             userInfo.put("Telp", telp.getText().toString());
 
                             df.update(userInfo);
@@ -102,7 +101,7 @@ public class EditPedagang extends AppCompatActivity {
 
                         }
                     });
-                }else {
+                } else {
                     Toast.makeText(EditPedagang.this, "Jangan kosongkan field", Toast.LENGTH_LONG).show();
                 }
             }
@@ -110,11 +109,11 @@ public class EditPedagang extends AppCompatActivity {
     }
 
     private boolean checkField(EditText textField) {
-        if(textField.getText().toString().isEmpty()){
+        if (textField.getText().toString().isEmpty()) {
             textField.setError("Error");
             Toast.makeText(this, "Isi field yang kosong", Toast.LENGTH_SHORT).show();
             valid = false;
-        }else {
+        } else {
             valid = true;
         }
 

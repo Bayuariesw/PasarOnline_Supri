@@ -22,7 +22,7 @@ public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.Dagang
     //buat untuk adapter
     private Context mContext;
     private List<Dagangan> mDagang;
-    List<Dagangan> filteredUserDataList;
+    public List<Dagangan> filteredUserDataList;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
@@ -129,8 +129,7 @@ public class DaganganAdapter extends RecyclerView.Adapter<DaganganAdapter.Dagang
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-
-                filteredUserDataList = (List<Dagangan>)filterResults.values;
+                filteredUserDataList = (List<Dagangan>) filterResults.values;
                 notifyDataSetChanged();
             }
         };

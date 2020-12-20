@@ -17,6 +17,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainPedagang extends AppCompatActivity {
     //buat main activity pedagang
+
+    // Team : Supri
+    // Anggota :
+    //           1. 18523280 - Safik Widiantoro
+    //           2. 18523276 - Muhammad Zaki Naufali
+    //           3. 18523281 - Bayu Aries Wicaksono
+
     private BottomNavigationView btmNav;
     private FrameLayout fLayout;
 
@@ -33,8 +40,8 @@ public class MainPedagang extends AppCompatActivity {
         fLayout = findViewById(R.id.containerLayout);
 
         String extraProfile = getIntent().getStringExtra("profile");
-        if (extraProfile != null && extraProfile.equals("keProfile")){
-            getSupportFragmentManager().beginTransaction().replace(R.id.containerLayout,new ProfileFragment()).commit();
+        if (extraProfile != null && extraProfile.equals("keProfile")) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.containerLayout, new ProfileFragment()).commit();
             btmNav.setSelectedItemId(R.id.profil);
         }
     }
@@ -50,7 +57,7 @@ public class MainPedagang extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             Fragment frag = null;
 
-            switch (menuItem.getItemId()){
+            switch (menuItem.getItemId()) {
                 case R.id.home:
                     frag = new HomeFragment();
                     break;

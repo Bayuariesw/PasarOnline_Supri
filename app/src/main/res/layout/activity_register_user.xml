@@ -7,16 +7,17 @@
     android:orientation="vertical"
     tools:context=".create.RegisterUser">
     //buat register user
+
     <TextView
         android:id="@+id/tvKios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_above="@+id/cdView"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/gilroybbold"
         android:text="Ingin Daftar Kios ?"
-        android:layout_above="@+id/cdView"
-        android:layout_marginBottom="10dp"
         android:textColor="#1933F1"
         android:textSize="20sp"
         android:textStyle="normal" />
@@ -25,11 +26,11 @@
         android:id="@+id/cdView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:cardCornerRadius="20dp"
-        android:elevation="20dp">
+        android:elevation="20dp"
+        app:cardCornerRadius="20dp">
 
         <RelativeLayout
             android:layout_width="match_parent"

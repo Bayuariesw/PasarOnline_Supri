@@ -18,7 +18,7 @@ public class Keranjang implements Parcelable {
     private String imageUrl;
     private String mKey;
 
-    public Keranjang(){
+    public Keranjang() {
 
     }
 
